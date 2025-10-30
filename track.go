@@ -37,7 +37,7 @@ func NewTrackService(opts ...option.RequestOption) (r TrackService) {
 // externalId, or email. These properties help us associate events with existing
 // users. For all fields, null values unset the property and undefined values do
 // not unset existing properties.
-func (r *TrackService) NewEvent(ctx context.Context, body TrackNewEventParams, opts ...option.RequestOption) (res *TrackNewEventResponse, err error) {
+func (r *TrackService) Event(ctx context.Context, body TrackEventParams, opts ...option.RequestOption) (res *TrackEventResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
 	path := "track"
@@ -45,7 +45,7 @@ func (r *TrackService) NewEvent(ctx context.Context, body TrackNewEventParams, o
 	return
 }
 
-type TrackNewEventResponse struct {
+type TrackEventResponse struct {
 	// Any of true.
 	Success bool `json:"success,required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -57,12 +57,12 @@ type TrackNewEventResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackNewEventResponse) RawJSON() string { return r.JSON.raw }
-func (r *TrackNewEventResponse) UnmarshalJSON(data []byte) error {
+func (r TrackEventResponse) RawJSON() string { return r.JSON.raw }
+func (r *TrackEventResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type TrackNewEventParams struct {
+type TrackEventParams struct {
 	// The token for your Ours Privacy Source. You can find this in the Ours dashboard.
 	Token string `json:"token,required"`
 	// The name of the event you're tracking. This must be whitelisted in the Ours
@@ -87,26 +87,26 @@ type TrackNewEventParams struct {
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
-	DefaultProperties TrackNewEventParamsDefaultProperties `json:"defaultProperties,omitzero"`
+	DefaultProperties TrackEventParamsDefaultProperties `json:"defaultProperties,omitzero"`
 	// Any additional event properties you want to pass along.
 	EventProperties map[string]any `json:"eventProperties,omitzero"`
 	// Properties to set on the visitor. (optional) You can also update these
 	// properties via the identify endpoint.
-	UserProperties TrackNewEventParamsUserProperties `json:"userProperties,omitzero"`
+	UserProperties TrackEventParamsUserProperties `json:"userProperties,omitzero"`
 	paramObj
 }
 
-func (r TrackNewEventParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackNewEventParams
+func (r TrackEventParams) MarshalJSON() (data []byte, err error) {
+	type shadow TrackEventParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *TrackNewEventParams) UnmarshalJSON(data []byte) error {
+func (r *TrackEventParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // These properties are used throughout the Ours app to pass known values onto
 // destinations
-type TrackNewEventParamsDefaultProperties struct {
+type TrackEventParamsDefaultProperties struct {
 	// The active time in milliseconds that the user had this tab active
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
 	// The ad id for detected in the session. This is set by the web sdk automatically.
@@ -245,17 +245,17 @@ type TrackNewEventParamsDefaultProperties struct {
 	paramObj
 }
 
-func (r TrackNewEventParamsDefaultProperties) MarshalJSON() (data []byte, err error) {
-	type shadow TrackNewEventParamsDefaultProperties
+func (r TrackEventParamsDefaultProperties) MarshalJSON() (data []byte, err error) {
+	type shadow TrackEventParamsDefaultProperties
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *TrackNewEventParamsDefaultProperties) UnmarshalJSON(data []byte) error {
+func (r *TrackEventParamsDefaultProperties) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Properties to set on the visitor. (optional) You can also update these
 // properties via the identify endpoint.
-type TrackNewEventParamsUserProperties struct {
+type TrackEventParamsUserProperties struct {
 	AdID        param.Opt[string] `json:"ad_id,omitzero"`
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
 	CampaignID  param.Opt[string] `json:"campaign_id,omitzero"`
@@ -310,10 +310,10 @@ type TrackNewEventParamsUserProperties struct {
 	paramObj
 }
 
-func (r TrackNewEventParamsUserProperties) MarshalJSON() (data []byte, err error) {
-	type shadow TrackNewEventParamsUserProperties
+func (r TrackEventParamsUserProperties) MarshalJSON() (data []byte, err error) {
+	type shadow TrackEventParamsUserProperties
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *TrackNewEventParamsUserProperties) UnmarshalJSON(data []byte) error {
+func (r *TrackEventParamsUserProperties) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }

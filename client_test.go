@@ -38,7 +38,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.Track.NewEvent(context.Background(), oursprivacy.TrackNewEventParams{
+	client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -65,7 +65,7 @@ func TestRetryAfter(t *testing.T) {
 			},
 		}),
 	)
-	_, err := client.Track.NewEvent(context.Background(), oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -103,7 +103,7 @@ func TestDeleteRetryCountHeader(t *testing.T) {
 		}),
 		option.WithHeaderDel("X-Stainless-Retry-Count"),
 	)
-	_, err := client.Track.NewEvent(context.Background(), oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -136,7 +136,7 @@ func TestOverwriteRetryCountHeader(t *testing.T) {
 		}),
 		option.WithHeader("X-Stainless-Retry-Count", "42"),
 	)
-	_, err := client.Track.NewEvent(context.Background(), oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -168,7 +168,7 @@ func TestRetryAfterMs(t *testing.T) {
 			},
 		}),
 	)
-	_, err := client.Track.NewEvent(context.Background(), oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -194,7 +194,7 @@ func TestContextCancel(t *testing.T) {
 	)
 	cancelCtx, cancel := context.WithCancel(context.Background())
 	cancel()
-	_, err := client.Track.NewEvent(cancelCtx, oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(cancelCtx, oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -217,7 +217,7 @@ func TestContextCancelDelay(t *testing.T) {
 	)
 	cancelCtx, cancel := context.WithTimeout(context.Background(), 2*time.Millisecond)
 	defer cancel()
-	_, err := client.Track.NewEvent(cancelCtx, oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(cancelCtx, oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -246,7 +246,7 @@ func TestContextDeadline(t *testing.T) {
 				},
 			}),
 		)
-		_, err := client.Track.NewEvent(deadlineCtx, oursprivacy.TrackNewEventParams{
+		_, err := client.Track.Event(deadlineCtx, oursprivacy.TrackEventParams{
 			Token: "REPLACE_ME",
 			Event: "REPLACE_ME",
 		})

@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/ours-privacy-go/packages/respjson"
 )
 
-// IdentifyService contains methods and other services that help with interacting
+// VisitorService contains methods and other services that help with interacting
 // with the ours-privacy API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewIdentifyService] method instead.
-type IdentifyService struct {
+// the [NewVisitorService] method instead.
+type VisitorService struct {
 	Options []option.RequestOption
 }
 
-// NewIdentifyService generates a new service that applies the given options to
-// each request. These options are applied after the parent client's options (if
-// there is one), and before any request-specific options.
-func NewIdentifyService(opts ...option.RequestOption) (r IdentifyService) {
-	r = IdentifyService{}
+// NewVisitorService generates a new service that applies the given options to each
+// request. These options are applied after the parent client's options (if there
+// is one), and before any request-specific options.
+func NewVisitorService(opts ...option.RequestOption) (r VisitorService) {
+	r = VisitorService{}
 	r.Options = opts
 	return
 }
@@ -36,7 +36,7 @@ func NewIdentifyService(opts ...option.RequestOption) (r IdentifyService) {
 // Define visitor properties on an existing visitor or create a new visitor. Note:
 // This does not fire an event. If you want to fire an event, use the track method
 // and include properties for the visitor.
-func (r *IdentifyService) NewOrUpdate(ctx context.Context, body IdentifyNewOrUpdateParams, opts ...option.RequestOption) (res *IdentifyNewOrUpdateResponse, err error) {
+func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, opts ...option.RequestOption) (res *VisitorUpsertResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
 	path := "identify"
@@ -44,7 +44,7 @@ func (r *IdentifyService) NewOrUpdate(ctx context.Context, body IdentifyNewOrUpd
 	return
 }
 
-type IdentifyNewOrUpdateResponse struct {
+type VisitorUpsertResponse struct {
 	// Any of true.
 	Success bool `json:"success,required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -56,18 +56,18 @@ type IdentifyNewOrUpdateResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IdentifyNewOrUpdateResponse) RawJSON() string { return r.JSON.raw }
-func (r *IdentifyNewOrUpdateResponse) UnmarshalJSON(data []byte) error {
+func (r VisitorUpsertResponse) RawJSON() string { return r.JSON.raw }
+func (r *VisitorUpsertResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IdentifyNewOrUpdateParams struct {
+type VisitorUpsertParams struct {
 	// The token for your Ours Privacy Source. You can find this in the Ours dashboard.
 	Token string `json:"token,required"`
 	// User properties to associate with this user. The existing user properties will
 	// be updated. And all future events will have these properties associated with
 	// them.
-	UserProperties IdentifyNewOrUpdateParamsUserProperties `json:"userProperties,omitzero,required"`
+	UserProperties VisitorUpsertParamsUserProperties `json:"userProperties,omitzero,required"`
 	// The email address of a user. We will associate this event with the user or
 	// create a user. Used for lookup if externalId and userId are not included in the
 	// request.
@@ -82,22 +82,22 @@ type IdentifyNewOrUpdateParams struct {
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
-	DefaultProperties IdentifyNewOrUpdateParamsDefaultProperties `json:"defaultProperties,omitzero"`
+	DefaultProperties VisitorUpsertParamsDefaultProperties `json:"defaultProperties,omitzero"`
 	paramObj
 }
 
-func (r IdentifyNewOrUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow IdentifyNewOrUpdateParams
+func (r VisitorUpsertParams) MarshalJSON() (data []byte, err error) {
+	type shadow VisitorUpsertParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IdentifyNewOrUpdateParams) UnmarshalJSON(data []byte) error {
+func (r *VisitorUpsertParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // User properties to associate with this user. The existing user properties will
 // be updated. And all future events will have these properties associated with
 // them.
-type IdentifyNewOrUpdateParamsUserProperties struct {
+type VisitorUpsertParamsUserProperties struct {
 	AdID        param.Opt[string] `json:"ad_id,omitzero"`
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
 	CampaignID  param.Opt[string] `json:"campaign_id,omitzero"`
@@ -152,17 +152,17 @@ type IdentifyNewOrUpdateParamsUserProperties struct {
 	paramObj
 }
 
-func (r IdentifyNewOrUpdateParamsUserProperties) MarshalJSON() (data []byte, err error) {
-	type shadow IdentifyNewOrUpdateParamsUserProperties
+func (r VisitorUpsertParamsUserProperties) MarshalJSON() (data []byte, err error) {
+	type shadow VisitorUpsertParamsUserProperties
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IdentifyNewOrUpdateParamsUserProperties) UnmarshalJSON(data []byte) error {
+func (r *VisitorUpsertParamsUserProperties) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // These properties are used throughout the Ours app to pass known values onto
 // destinations
-type IdentifyNewOrUpdateParamsDefaultProperties struct {
+type VisitorUpsertParamsDefaultProperties struct {
 	// The active time in milliseconds that the user had this tab active
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
 	// The ad id for detected in the session. This is set by the web sdk automatically.
@@ -301,10 +301,10 @@ type IdentifyNewOrUpdateParamsDefaultProperties struct {
 	paramObj
 }
 
-func (r IdentifyNewOrUpdateParamsDefaultProperties) MarshalJSON() (data []byte, err error) {
-	type shadow IdentifyNewOrUpdateParamsDefaultProperties
+func (r VisitorUpsertParamsDefaultProperties) MarshalJSON() (data []byte, err error) {
+	type shadow VisitorUpsertParamsDefaultProperties
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IdentifyNewOrUpdateParamsDefaultProperties) UnmarshalJSON(data []byte) error {
+func (r *VisitorUpsertParamsDefaultProperties) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }

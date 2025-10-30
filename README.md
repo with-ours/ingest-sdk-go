@@ -6,7 +6,7 @@
 
 <!-- x-release-please-end -->
 
-The Ours Privacy Go library provides convenient access to the Ours Privacy REST API
+The Ours Privacy Go library provides convenient access to the [Ours Privacy REST API](https://docs.oursprivacy.com)
 from applications written in Go.
 
 It is generated with [Stainless](https://www.stainless.com/).
@@ -48,7 +48,7 @@ func main() {
 	client := oursprivacy.NewClient(
 		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OURS_PRIVACY_API_KEY")
 	)
-	response, err := client.Track.NewEvent(context.TODO(), oursprivacy.TrackNewEventParams{
+	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
@@ -261,7 +261,7 @@ client := oursprivacy.NewClient(
 	option.WithHeader("X-Some-Header", "custom_header_info"),
 )
 
-client.Track.NewEvent(context.TODO(), ...,
+client.Track.Event(context.TODO(), ...,
 	// Override the header
 	option.WithHeader("X-Some-Header", "some_other_custom_header_info"),
 	// Add an undocumented field to the request body, using sjson syntax
@@ -292,7 +292,7 @@ When the API returns a non-success status code, we return an error with type
 To handle errors, we recommend that you use the `errors.As` pattern:
 
 ```go
-_, err := client.Track.NewEvent(context.TODO(), oursprivacy.TrackNewEventParams{
+_, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 	Token: "REPLACE_ME",
 	Event: "REPLACE_ME",
 })
@@ -320,9 +320,9 @@ To set a per-retry timeout, use `option.WithRequestTimeout()`.
 // This sets the timeout for the request, including all the retries.
 ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 defer cancel()
-client.Track.NewEvent(
+client.Track.Event(
 	ctx,
-	oursprivacy.TrackNewEventParams{
+	oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	},
@@ -359,9 +359,9 @@ client := oursprivacy.NewClient(
 )
 
 // Override per-request:
-client.Track.NewEvent(
+client.Track.Event(
 	context.TODO(),
-	oursprivacy.TrackNewEventParams{
+	oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	},
@@ -377,9 +377,9 @@ you need to examine response headers, status codes, or other details.
 ```go
 // Create a variable to store the HTTP response
 var response *http.Response
-response, err := client.Track.NewEvent(
+response, err := client.Track.Event(
 	context.TODO(),
-	oursprivacy.TrackNewEventParams{
+	oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	},
