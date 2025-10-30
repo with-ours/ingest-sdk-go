@@ -24,7 +24,6 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 	}
 	client := oursprivacy.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Visitor.Upsert(context.TODO(), oursprivacy.VisitorUpsertParams{
 		Token: "x",

@@ -41,13 +41,10 @@ import (
 	"fmt"
 
 	"github.com/stainless-sdks/ours-privacy-go"
-	"github.com/stainless-sdks/ours-privacy-go/option"
 )
 
 func main() {
-	client := oursprivacy.NewClient(
-		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OURS_PRIVACY_API_KEY")
-	)
+	client := oursprivacy.NewClient()
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
