@@ -16,9 +16,9 @@ import (
 // interacting with the ours-privacy API. You should not instantiate this client
 // directly, and instead use the [NewClient] method instead.
 type Client struct {
-	Options  []option.RequestOption
-	Track    TrackService
-	Identify IdentifyService
+	Options []option.RequestOption
+	Track   TrackService
+	Visitor VisitorService
 }
 
 // DefaultClientOptions read from the environment (OURS_PRIVACY_API_KEY,
@@ -44,7 +44,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r = Client{Options: opts}
 
 	r.Track = NewTrackService(opts...)
-	r.Identify = NewIdentifyService(opts...)
+	r.Visitor = NewVisitorService(opts...)
 
 	return
 }

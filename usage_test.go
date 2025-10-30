@@ -24,7 +24,7 @@ func TestUsage(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	response, err := client.Track.NewEvent(context.TODO(), oursprivacy.TrackNewEventParams{
+	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})

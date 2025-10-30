@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/ours-privacy-go/option"
 )
 
-func TestIdentifyNewOrUpdateWithOptionalParams(t *testing.T) {
+func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 	t.Skip("Prism tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,9 +26,9 @@ func TestIdentifyNewOrUpdateWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Identify.NewOrUpdate(context.TODO(), oursprivacy.IdentifyNewOrUpdateParams{
+	_, err := client.Visitor.Upsert(context.TODO(), oursprivacy.VisitorUpsertParams{
 		Token: "x",
-		UserProperties: oursprivacy.IdentifyNewOrUpdateParamsUserProperties{
+		UserProperties: oursprivacy.VisitorUpsertParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
 			AdsetID:     oursprivacy.String("adset_id"),
 			CampaignID:  oursprivacy.String("campaign_id"),
@@ -84,7 +84,7 @@ func TestIdentifyNewOrUpdateWithOptionalParams(t *testing.T) {
 			Wbraid:            oursprivacy.String("wbraid"),
 			Zip:               map[string]interface{}{},
 		},
-		DefaultProperties: oursprivacy.IdentifyNewOrUpdateParamsDefaultProperties{
+		DefaultProperties: oursprivacy.VisitorUpsertParamsDefaultProperties{
 			ActiveDuration:  oursprivacy.Float(0),
 			AdID:            oursprivacy.String("ad_id"),
 			AdsetID:         oursprivacy.String("adset_id"),

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/ours-privacy-go/option"
 )
 
-func TestTrackNewEventWithOptionalParams(t *testing.T) {
+func TestTrackEventWithOptionalParams(t *testing.T) {
 	t.Skip("Prism tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,10 +26,10 @@ func TestTrackNewEventWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Track.NewEvent(context.TODO(), oursprivacy.TrackNewEventParams{
+	_, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "x",
 		Event: "x",
-		DefaultProperties: oursprivacy.TrackNewEventParamsDefaultProperties{
+		DefaultProperties: oursprivacy.TrackEventParamsDefaultProperties{
 			ActiveDuration:  oursprivacy.Float(0),
 			AdID:            oursprivacy.String("ad_id"),
 			AdsetID:         oursprivacy.String("adset_id"),
@@ -103,7 +103,7 @@ func TestTrackNewEventWithOptionalParams(t *testing.T) {
 		ExternalID: oursprivacy.String("x"),
 		Time:       oursprivacy.Float(0),
 		UserID:     oursprivacy.String("x"),
-		UserProperties: oursprivacy.TrackNewEventParamsUserProperties{
+		UserProperties: oursprivacy.TrackEventParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
 			AdsetID:     oursprivacy.String("adset_id"),
 			CampaignID:  oursprivacy.String("campaign_id"),
