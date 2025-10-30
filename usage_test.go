@@ -22,7 +22,6 @@ func TestUsage(t *testing.T) {
 	}
 	client := oursprivacy.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
 	)
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
