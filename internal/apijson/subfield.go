@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks/ours-privacy-go/packages/respjson"
+	"github.com/with-ours/ingest-sdk-go/packages/respjson"
 	"reflect"
 )
 

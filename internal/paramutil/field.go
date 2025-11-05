@@ -1,8 +1,8 @@
 package paramutil
 
 import (
-	"github.com/stainless-sdks/ours-privacy-go/packages/param"
-	"github.com/stainless-sdks/ours-privacy-go/packages/respjson"
+	"github.com/with-ours/ingest-sdk-go/packages/param"
+	"github.com/with-ours/ingest-sdk-go/packages/respjson"
 )
 
 func AddrIfPresent[T comparable](v param.Opt[T]) *T {

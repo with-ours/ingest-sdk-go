@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/ours-privacy-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/ours-privacy-go/packages/param"
+	"github.com/with-ours/ingest-sdk-go/internal/encoding/json/sentinel"
+	"github.com/with-ours/ingest-sdk-go/packages/param"
 	"reflect"
 	"slices"
 	"testing"
