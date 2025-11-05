@@ -41,7 +41,7 @@ To use a local version of this library from source in another project, edit the 
 directive. This can be done through the CLI with the following:
 
 ```sh
-$ go mod edit -replace github.com/stainless-sdks/ours-privacy-go=/path/to/ours-privacy-go
+$ go mod edit -replace github.com/with-ours/ingest-sdk-go=/path/to/ingest-sdk-go
 ```
 
 ## Running tests
