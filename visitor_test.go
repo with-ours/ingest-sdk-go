@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/ours-privacy-go"
-	"github.com/stainless-sdks/ours-privacy-go/internal/testutil"
-	"github.com/stainless-sdks/ours-privacy-go/option"
+	"github.com/with-ours/ingest-sdk-go"
+	"github.com/with-ours/ingest-sdk-go/internal/testutil"
+	"github.com/with-ours/ingest-sdk-go/option"
 )
 
 func TestVisitorUpsertWithOptionalParams(t *testing.T) {

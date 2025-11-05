@@ -2,7 +2,7 @@ package param_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/ours-privacy-go/packages/param"
+	"github.com/with-ours/ingest-sdk-go/packages/param"
 	"testing"
 )
 

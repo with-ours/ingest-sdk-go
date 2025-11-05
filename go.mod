@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/ours-privacy-go
+module github.com/with-ours/ingest-sdk-go
 
 go 1.22
 

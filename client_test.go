@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/ours-privacy-go"
-	"github.com/stainless-sdks/ours-privacy-go/internal"
-	"github.com/stainless-sdks/ours-privacy-go/option"
+	"github.com/with-ours/ingest-sdk-go"
+	"github.com/with-ours/ingest-sdk-go/internal"
+	"github.com/with-ours/ingest-sdk-go/option"
 )
 
 type closureTransport struct {

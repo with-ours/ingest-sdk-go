@@ -2,7 +2,7 @@ package paramutil
 
 import (
 	"fmt"
-	"github.com/stainless-sdks/ours-privacy-go/packages/param"
+	"github.com/with-ours/ingest-sdk-go/packages/param"
 	"reflect"
 )
 

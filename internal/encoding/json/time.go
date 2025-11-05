@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/ours-privacy-go/internal/encoding/json/shims"
+	"github.com/with-ours/ingest-sdk-go/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )
