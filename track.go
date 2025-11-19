@@ -172,6 +172,8 @@ type TrackEventParamsDefaultProperties struct {
 	Iframe param.Opt[bool] `json:"iframe,omitzero"`
 	// The IP address of the user. Ex: 127.0.0.1
 	IP param.Opt[string] `json:"ip,omitzero"`
+	// The Impact Click ID. Ex: irclickid123
+	Irclickid param.Opt[string] `json:"irclickid,omitzero"`
 	// The LinkedIn Click ID. Ex: li_fat_id123
 	LiFatID param.Opt[string] `json:"li_fat_id,omitzero"`
 	// The Microsoft Click ID. Ex: msclkid123
@@ -279,6 +281,7 @@ type TrackEventParamsUserProperties struct {
 	Gender      param.Opt[string] `json:"gender,omitzero"`
 	// The IP address of the user
 	IP                param.Opt[string] `json:"ip,omitzero"`
+	Irclickid         param.Opt[string] `json:"irclickid,omitzero"`
 	JobTitle          param.Opt[string] `json:"job_title,omitzero"`
 	LastName          param.Opt[string] `json:"last_name,omitzero"`
 	LiFatID           param.Opt[string] `json:"li_fat_id,omitzero"`
