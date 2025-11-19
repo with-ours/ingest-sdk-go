@@ -130,6 +130,7 @@ type VisitorUpsertParamsUserProperties struct {
 	Qclid             param.Opt[string] `json:"qclid,omitzero"`
 	RdtCid            param.Opt[string] `json:"rdt_cid,omitzero"`
 	Referrer          param.Opt[string] `json:"referrer,omitzero"`
+	ReferringDomain   param.Opt[string] `json:"referring_domain,omitzero"`
 	Sacid             param.Opt[string] `json:"sacid,omitzero"`
 	Sccid             param.Opt[string] `json:"sccid,omitzero"`
 	Sid               param.Opt[string] `json:"sid,omitzero"`
@@ -255,6 +256,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	ReceivedAt param.Opt[string] `json:"received_at,omitzero"`
 	// The referrer URL of the current page
 	Referrer param.Opt[string] `json:"referrer,omitzero"`
+	// The referring domain of the current page
+	ReferringDomain param.Opt[string] `json:"referring_domain,omitzero"`
 	// The StackAdapt Tracking ID. Ex: sacid123
 	Sacid param.Opt[string] `json:"sacid,omitzero"`
 	// The SnapChat Click ID. Ex: sccid123
