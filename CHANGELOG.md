@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2025-11-19)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* bump gjson version ([fdfb43d](https://github.com/with-ours/ingest-sdk-go/commit/fdfb43dd6cdf5491ead43366702f9a54b87a7f46))
+
 ## 0.1.0 (2025-11-05)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.0.1...v0.1.0)
