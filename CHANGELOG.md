@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.1 (2025-12-06)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.2.0...v0.2.1)
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([1fadb43](https://github.com/with-ours/ingest-sdk-go/commit/1fadb43ced15b3fdfe3956ffd1d1699eb99d54e9))
+* rename param to avoid collision ([f4ee438](https://github.com/with-ours/ingest-sdk-go/commit/f4ee43869fb88863276d7fcc2a73f98c44761d53))
+
+
+### Chores
+
+* elide duplicate aliases ([6bff750](https://github.com/with-ours/ingest-sdk-go/commit/6bff75047a42dacc11ff08f967ee975f88fe66a2))
+* **internal:** codegen related update ([7c4cb0e](https://github.com/with-ours/ingest-sdk-go/commit/7c4cb0eadb21bca5f16235d24c244b4eef4a11fc))
+
 ## 0.2.0 (2025-11-26)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.1.1...v0.2.0)
