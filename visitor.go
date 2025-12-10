@@ -119,6 +119,7 @@ type VisitorUpsertParamsUserProperties struct {
 	Gbraid      param.Opt[string] `json:"gbraid,omitzero"`
 	Gclid       param.Opt[string] `json:"gclid,omitzero"`
 	Gender      param.Opt[string] `json:"gender,omitzero"`
+	ImRef       param.Opt[string] `json:"im_ref,omitzero"`
 	// The IP address of the user
 	IP                param.Opt[string] `json:"ip,omitzero"`
 	Irclickid         param.Opt[string] `json:"irclickid,omitzero"`
@@ -228,6 +229,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	Host param.Opt[string] `json:"host,omitzero"`
 	// Whether the user is in an iframe. Ex: true
 	Iframe param.Opt[bool] `json:"iframe,omitzero"`
+	// The Impact Click ID reference. Ex: im_ref123
+	ImRef param.Opt[string] `json:"im_ref,omitzero"`
 	// The IP address of the user. Ex: 127.0.0.1
 	IP param.Opt[string] `json:"ip,omitzero"`
 	// The Impact Click ID. Ex: irclickid123
