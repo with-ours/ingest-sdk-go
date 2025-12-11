@@ -124,11 +124,13 @@ type VisitorUpsertParamsUserProperties struct {
 	// The IP address of the user
 	IP                param.Opt[string] `json:"ip,omitzero"`
 	Irclickid         param.Opt[string] `json:"irclickid,omitzero"`
+	IsBot             param.Opt[string] `json:"is_bot,omitzero"`
 	JobTitle          param.Opt[string] `json:"job_title,omitzero"`
 	LastName          param.Opt[string] `json:"last_name,omitzero"`
 	LiFatID           param.Opt[string] `json:"li_fat_id,omitzero"`
 	Msclkid           param.Opt[string] `json:"msclkid,omitzero"`
 	Ndclid            param.Opt[string] `json:"ndclid,omitzero"`
+	PhoneNumber       param.Opt[string] `json:"phone_number,omitzero"`
 	Qclid             param.Opt[string] `json:"qclid,omitzero"`
 	RdtCid            param.Opt[string] `json:"rdt_cid,omitzero"`
 	Referrer          param.Opt[string] `json:"referrer,omitzero"`
@@ -148,11 +150,9 @@ type VisitorUpsertParamsUserProperties struct {
 	UtmSource         param.Opt[string] `json:"utm_source,omitzero"`
 	UtmTerm           param.Opt[string] `json:"utm_term,omitzero"`
 	Wbraid            param.Opt[string] `json:"wbraid,omitzero"`
-	Consent           map[string]any    `json:"consent,omitzero"`
-	CustomProperties  map[string]any    `json:"custom_properties,omitzero"`
-	IsBot             any               `json:"is_bot,omitzero"`
-	PhoneNumber       any               `json:"phone_number,omitzero"`
-	Zip               any               `json:"zip,omitzero"`
+	Zip               param.Opt[string] `json:"zip,omitzero"`
+	Consent           map[string]string `json:"consent,omitzero"`
+	CustomProperties  map[string]string `json:"custom_properties,omitzero"`
 	paramObj
 }
 
@@ -238,6 +238,9 @@ type VisitorUpsertParamsDefaultProperties struct {
 	IP param.Opt[string] `json:"ip,omitzero"`
 	// The Impact Click ID. Ex: irclickid123
 	Irclickid param.Opt[string] `json:"irclickid,omitzero"`
+	// Whether we have detected that the user is a bot. This is set automatically by
+	// the Ours server primarily for events tracked through the web SDK.
+	IsBot param.Opt[string] `json:"is_bot,omitzero"`
 	// The LinkedIn Click ID. Ex: li_fat_id123
 	LiFatID param.Opt[string] `json:"li_fat_id,omitzero"`
 	// The Microsoft Click ID. Ex: msclkid123
@@ -307,9 +310,6 @@ type VisitorUpsertParamsDefaultProperties struct {
 	Wbraid param.Opt[string] `json:"wbraid,omitzero"`
 	// Whether the user is in a webview. Ex: true
 	Webview param.Opt[bool] `json:"webview,omitzero"`
-	// Whether we have detected that the user is a bot. This is set automatically by
-	// the Ours server primarily for events tracked through the web SDK.
-	IsBot any `json:"is_bot,omitzero"`
 	paramObj
 }
 
