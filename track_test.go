@@ -32,6 +32,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 			ActiveDuration:  oursprivacy.Float(0),
 			AdID:            oursprivacy.String("ad_id"),
 			AdsetID:         oursprivacy.String("adset_id"),
+			BasisCid:        oursprivacy.String("basis_cid"),
 			BrowserLanguage: oursprivacy.String("browser_language"),
 			BrowserName:     oursprivacy.String("browser_name"),
 			BrowserVersion:  oursprivacy.String("browser_version"),
@@ -108,6 +109,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 		UserProperties: oursprivacy.TrackEventParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
 			AdsetID:     oursprivacy.String("adset_id"),
+			BasisCid:    oursprivacy.String("basis_cid"),
 			CampaignID:  oursprivacy.String("campaign_id"),
 			City:        oursprivacy.String("city"),
 			Clickid:     oursprivacy.String("clickid"),
