@@ -114,6 +114,10 @@ type TrackEventParamsDefaultProperties struct {
 	// The adset id for detected in the session. This is set by the web sdk
 	// automatically.
 	AdsetID param.Opt[string] `json:"adset_id,omitzero"`
+	// The AppLovin alart query parameter. Ex: alart123
+	Alart param.Opt[string] `json:"alart,omitzero"`
+	// The AppLovin aleid query parameter. Ex: aleid123
+	Aleid param.Opt[string] `json:"aleid,omitzero"`
 	// The Basis DSP Click ID. Ex: basis_cid123
 	BasisCid param.Opt[string] `json:"basis_cid,omitzero"`
 	// The language of the browser. Ex: en-US
@@ -266,6 +270,8 @@ func (r *TrackEventParamsDefaultProperties) UnmarshalJSON(data []byte) error {
 type TrackEventParamsUserProperties struct {
 	AdID        param.Opt[string] `json:"ad_id,omitzero"`
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
+	Alart       param.Opt[string] `json:"alart,omitzero"`
+	Aleid       param.Opt[string] `json:"aleid,omitzero"`
 	BasisCid    param.Opt[string] `json:"basis_cid,omitzero"`
 	CampaignID  param.Opt[string] `json:"campaign_id,omitzero"`
 	City        param.Opt[string] `json:"city,omitzero"`
