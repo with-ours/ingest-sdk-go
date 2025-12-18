@@ -23,6 +23,7 @@ func TestUsage(t *testing.T) {
 	client := oursprivacy.NewClient(
 		option.WithBaseURL(baseURL),
 	)
+	t.Skip("Prism tests are disabled")
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
