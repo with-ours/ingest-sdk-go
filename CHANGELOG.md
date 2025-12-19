@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.1 (2025-12-19)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.0...v0.7.1)
+
+### Bug Fixes
+
+* skip usage tests that don't work with Prism ([c48cf04](https://github.com/with-ours/ingest-sdk-go/commit/c48cf04fbec25f1b1f93dc666343ac7c1906ab05))
+
+
+### Chores
+
+* add float64 to valid types for RegisterFieldValidator ([f227dad](https://github.com/with-ours/ingest-sdk-go/commit/f227dadaa984d923c41652498ed732ac6332be50))
+
 ## 0.7.0 (2025-12-17)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.6.0...v0.7.0)
