@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2 (2026-01-06)
+
+Full Changelog: [v0.7.1...v0.7.2](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.1...v0.7.2)
+
+### Chores
+
+* **internal:** codegen related update ([f76e161](https://github.com/with-ours/ingest-sdk-go/commit/f76e161f968f0648ccb5703e6d5c592d7c17a1e5))
+
 ## 0.7.1 (2025-12-19)
 
 Full Changelog: [v0.7.0...v0.7.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.0...v0.7.1)
