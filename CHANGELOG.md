@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.3 (2026-01-17)
+
+Full Changelog: [v0.7.2...v0.7.3](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.2...v0.7.3)
+
+### Bug Fixes
+
+* **docs:** add missing pointer prefix to api.md return types ([b7bed3b](https://github.com/with-ours/ingest-sdk-go/commit/b7bed3b3ac32790fcf5f9b5db257b6f062df6e7b))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([c2af041](https://github.com/with-ours/ingest-sdk-go/commit/c2af0411b29434588b96de45f7d8d543fa982c70))
+
 ## 0.7.2 (2026-01-06)
 
 Full Changelog: [v0.7.1...v0.7.2](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.1...v0.7.2)
