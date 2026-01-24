@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 (2026-01-24)
+
+Full Changelog: [v0.7.3...v0.8.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.3...v0.8.0)
+
+### Features
+
+* **client:** add a convenient param.SetJSON helper ([c623fd6](https://github.com/with-ours/ingest-sdk-go/commit/c623fd647911cac3dff99f12df9326c142ce58ca))
+
 ## 0.7.3 (2026-01-17)
 
 Full Changelog: [v0.7.2...v0.7.3](https://github.com/with-ours/ingest-sdk-go/compare/v0.7.2...v0.7.3)
