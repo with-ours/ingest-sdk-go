@@ -62,7 +62,7 @@ func (r *VisitorUpsertResponse) UnmarshalJSON(data []byte) error {
 }
 
 type VisitorUpsertParams struct {
-	// The token for your Ours Privacy Source. You can find this in the Ours dashboard.
+	// The token for your Source. You can find this in the dashboard.
 	Token string `json:"token,required"`
 	// User properties to associate with this user. The existing user properties will
 	// be updated. And all future events will have these properties associated with
