@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2026-02-11)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.9.0...v0.9.1)
+
+### Bug Fixes
+
+* **encoder:** correctly serialize NullStruct ([b90433d](https://github.com/with-ours/ingest-sdk-go/commit/b90433d205437cfdb0dcbdfffd778747c71aa286))
+
 ## 0.9.0 (2026-02-04)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.8.0...v0.9.0)
