@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.2 (2026-02-20)
+
+Full Changelog: [v0.9.1...v0.9.2](https://github.com/with-ours/ingest-sdk-go/compare/v0.9.1...v0.9.2)
+
+### Bug Fixes
+
+* allow canceling a request while it is waiting to retry ([79b8da6](https://github.com/with-ours/ingest-sdk-go/commit/79b8da62992b41fe5a24cc0a7ad6f1f2cfd12255))
+
+
+### Chores
+
+* **internal:** remove mock server code ([aa66202](https://github.com/with-ours/ingest-sdk-go/commit/aa66202b3d25a4be6aef72c3a662f19ae529b0d0))
+* update mock server docs ([5062790](https://github.com/with-ours/ingest-sdk-go/commit/50627906625584034a0c924d9ca01b636dd2f692))
+
 ## 0.9.1 (2026-02-11)
 
 Full Changelog: [v0.9.0...v0.9.1](https://github.com/with-ours/ingest-sdk-go/compare/v0.9.0...v0.9.1)
