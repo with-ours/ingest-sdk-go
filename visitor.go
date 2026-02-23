@@ -33,9 +33,8 @@ func NewVisitorService(opts ...option.RequestOption) (r VisitorService) {
 	return
 }
 
-// Define visitor properties on an existing visitor or create a new visitor. Note:
-// This does not fire an event. If you want to fire an event, use the track method
-// and include properties for the visitor.
+// Define visitor properties on an existing visitor or create a new visitor. This
+// fires a $identify event, making the call visible in the event stream.
 func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, opts ...option.RequestOption) (res *VisitorUpsertResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
