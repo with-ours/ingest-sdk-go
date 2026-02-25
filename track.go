@@ -47,7 +47,7 @@ func (r *TrackService) Event(ctx context.Context, body TrackEventParams, opts ..
 
 type TrackEventResponse struct {
 	// Any of true.
-	Success bool `json:"success,required"`
+	Success bool `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Success     respjson.Field
@@ -64,10 +64,10 @@ func (r *TrackEventResponse) UnmarshalJSON(data []byte) error {
 
 type TrackEventParams struct {
 	// The token for your Source. You can find this in the dashboard.
-	Token string `json:"token,required"`
+	Token string `json:"token" api:"required"`
 	// The name of the event you're tracking. This must be whitelisted in the Ours
 	// dashboard.
-	Event string `json:"event,required"`
+	Event string `json:"event" api:"required"`
 	// A unique identifier for the event. This helps prevent duplicate events.
 	DistinctID param.Opt[string] `json:"distinctId,omitzero"`
 	// The email address of a user. We will associate this event with the user or
