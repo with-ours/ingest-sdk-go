@@ -33,9 +33,8 @@ func NewVisitorService(opts ...option.RequestOption) (r VisitorService) {
 	return
 }
 
-// Define visitor properties on an existing visitor or create a new visitor. Note:
-// This does not fire an event. If you want to fire an event, use the track method
-// and include properties for the visitor.
+// Define visitor properties on an existing visitor or create a new visitor. This
+// fires a $identify event, making the call visible in the event stream.
 func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, opts ...option.RequestOption) (res *VisitorUpsertResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
@@ -46,7 +45,7 @@ func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, o
 
 type VisitorUpsertResponse struct {
 	// Any of true.
-	Success bool `json:"success,required"`
+	Success bool `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Success     respjson.Field
@@ -63,11 +62,11 @@ func (r *VisitorUpsertResponse) UnmarshalJSON(data []byte) error {
 
 type VisitorUpsertParams struct {
 	// The token for your Source. You can find this in the dashboard.
-	Token string `json:"token,required"`
+	Token string `json:"token" api:"required"`
 	// User properties to associate with this user. The existing user properties will
 	// be updated. And all future events will have these properties associated with
 	// them.
-	UserProperties VisitorUpsertParamsUserProperties `json:"userProperties,omitzero,required"`
+	UserProperties VisitorUpsertParamsUserProperties `json:"userProperties,omitzero" api:"required"`
 	// The email address of a user. We will associate this event with the user or
 	// create a user. Used for lookup if externalId and userId are not included in the
 	// request.
