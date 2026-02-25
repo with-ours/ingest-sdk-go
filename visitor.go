@@ -45,7 +45,7 @@ func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, o
 
 type VisitorUpsertResponse struct {
 	// Any of true.
-	Success bool `json:"success,required"`
+	Success bool `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Success     respjson.Field
@@ -62,11 +62,11 @@ func (r *VisitorUpsertResponse) UnmarshalJSON(data []byte) error {
 
 type VisitorUpsertParams struct {
 	// The token for your Source. You can find this in the dashboard.
-	Token string `json:"token,required"`
+	Token string `json:"token" api:"required"`
 	// User properties to associate with this user. The existing user properties will
 	// be updated. And all future events will have these properties associated with
 	// them.
-	UserProperties VisitorUpsertParamsUserProperties `json:"userProperties,omitzero,required"`
+	UserProperties VisitorUpsertParamsUserProperties `json:"userProperties,omitzero" api:"required"`
 	// The email address of a user. We will associate this event with the user or
 	// create a user. Used for lookup if externalId and userId are not included in the
 	// request.
