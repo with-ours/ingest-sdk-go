@@ -163,7 +163,11 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 		},
 		Email:      oursprivacy.String("x"),
 		ExternalID: oursprivacy.String("x"),
-		UserID:     oursprivacy.String("x"),
+		IdentityContext: oursprivacy.VisitorUpsertParamsIdentityContext{
+			IP:        "ip",
+			UserAgent: "userAgent",
+		},
+		UserID: oursprivacy.String("x"),
 	})
 	if err != nil {
 		var apierr *oursprivacy.Error

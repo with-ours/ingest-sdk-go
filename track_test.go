@@ -106,8 +106,12 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 			"foo": "string",
 		},
 		ExternalID: oursprivacy.String("x"),
-		Time:       oursprivacy.Float(0),
-		UserID:     oursprivacy.String("x"),
+		IdentityContext: oursprivacy.TrackEventParamsIdentityContext{
+			IP:        "ip",
+			UserAgent: "userAgent",
+		},
+		Time:   oursprivacy.Float(0),
+		UserID: oursprivacy.String("x"),
 		UserProperties: oursprivacy.TrackEventParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
 			AdsetID:     oursprivacy.String("adset_id"),

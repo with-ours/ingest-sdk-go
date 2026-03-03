@@ -90,6 +90,10 @@ type TrackEventParams struct {
 	DefaultProperties TrackEventParamsDefaultProperties `json:"defaultProperties,omitzero"`
 	// Any additional event properties you want to pass along.
 	EventProperties map[string]string `json:"eventProperties,omitzero"`
+	// End-user network context for server-side calls. Required for probabilistic
+	// identity resolution when the caller is a backend server rather than an end-user
+	// browser.
+	IdentityContext TrackEventParamsIdentityContext `json:"identityContext,omitzero"`
 	// Properties to set on the visitor. (optional) You can also update these
 	// properties via the identify endpoint.
 	UserProperties TrackEventParamsUserProperties `json:"userProperties,omitzero"`
@@ -262,6 +266,27 @@ func (r TrackEventParamsDefaultProperties) MarshalJSON() (data []byte, err error
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *TrackEventParamsDefaultProperties) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// End-user network context for server-side calls. Required for probabilistic
+// identity resolution when the caller is a backend server rather than an end-user
+// browser.
+//
+// The properties IP, UserAgent are required.
+type TrackEventParamsIdentityContext struct {
+	// The end-user IP address (not the server IP).
+	IP string `json:"ip" api:"required"`
+	// The end-user User-Agent string (not the server UA).
+	UserAgent string `json:"userAgent" api:"required"`
+	paramObj
+}
+
+func (r TrackEventParamsIdentityContext) MarshalJSON() (data []byte, err error) {
+	type shadow TrackEventParamsIdentityContext
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackEventParamsIdentityContext) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
