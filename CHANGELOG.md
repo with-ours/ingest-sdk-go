@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.0 (2026-03-05)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** api update ([c534253](https://github.com/with-ours/ingest-sdk-go/commit/c534253401c0f3120088cf0b5ce30c728bbdc74a))
+
+
+### Bug Fixes
+
+* fix request delays for retrying to be more respectful of high requested delays ([7c13098](https://github.com/with-ours/ingest-sdk-go/commit/7c1309801d391e4911516a2a6fefc8396e484fe7))
+
+
+### Chores
+
+* **internal:** codegen related update ([fe04004](https://github.com/with-ours/ingest-sdk-go/commit/fe040047303041d043ec07216024506f4e31806f))
+
 ## 1.0.0 (2026-02-25)
 
 Full Changelog: [v0.9.1...v1.0.0](https://github.com/with-ours/ingest-sdk-go/compare/v0.9.1...v1.0.0)
