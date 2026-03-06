@@ -82,6 +82,10 @@ type VisitorUpsertParams struct {
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
 	DefaultProperties VisitorUpsertParamsDefaultProperties `json:"defaultProperties,omitzero"`
+	// End-user network context for server-side calls. Required for probabilistic
+	// identity resolution when the caller is a backend server rather than an end-user
+	// browser.
+	IdentityContext VisitorUpsertParamsIdentityContext `json:"identityContext,omitzero"`
 	paramObj
 }
 
@@ -323,5 +327,26 @@ func (r VisitorUpsertParamsDefaultProperties) MarshalJSON() (data []byte, err er
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *VisitorUpsertParamsDefaultProperties) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// End-user network context for server-side calls. Required for probabilistic
+// identity resolution when the caller is a backend server rather than an end-user
+// browser.
+//
+// The properties IP, UserAgent are required.
+type VisitorUpsertParamsIdentityContext struct {
+	// The end-user IP address (not the server IP).
+	IP string `json:"ip" api:"required"`
+	// The end-user User-Agent string (not the server UA).
+	UserAgent string `json:"userAgent" api:"required"`
+	paramObj
+}
+
+func (r VisitorUpsertParamsIdentityContext) MarshalJSON() (data []byte, err error) {
+	type shadow VisitorUpsertParamsIdentityContext
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *VisitorUpsertParamsIdentityContext) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
