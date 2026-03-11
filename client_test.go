@@ -37,7 +37,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
+	_, _ = client.Track.Event(context.Background(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	})
