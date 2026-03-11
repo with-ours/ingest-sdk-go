@@ -13,6 +13,7 @@ import (
 )
 
 func TestUsage(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -23,7 +24,6 @@ func TestUsage(t *testing.T) {
 	client := oursprivacy.NewClient(
 		option.WithBaseURL(baseURL),
 	)
-	t.Skip("Mock server tests are disabled")
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
