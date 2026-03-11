@@ -42,7 +42,7 @@ func (r *TrackService) Event(ctx context.Context, body TrackEventParams, opts ..
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
 	path := "track"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type TrackEventResponse struct {
