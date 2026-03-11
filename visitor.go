@@ -40,7 +40,7 @@ func (r *VisitorService) Upsert(ctx context.Context, body VisitorUpsertParams, o
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
 	path := "identify"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type VisitorUpsertResponse struct {
