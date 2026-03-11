@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.1 (2026-03-11)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.0...v1.1.1)
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([6e6d134](https://github.com/with-ours/ingest-sdk-go/commit/6e6d1342c641791bb4e594eb1862d3a5e7fd07f4))
+* **internal:** minor cleanup ([89fc92f](https://github.com/with-ours/ingest-sdk-go/commit/89fc92ffb114d44cff9181851346cb8b10b5888f))
+* **internal:** use explicit returns ([6c4985f](https://github.com/with-ours/ingest-sdk-go/commit/6c4985f22bb96a113a7e9d3ec682a2f043358987))
+* **internal:** use explicit returns in more places ([d7cd131](https://github.com/with-ours/ingest-sdk-go/commit/d7cd131aa14323b0a2f84ac40e9baad95ea6e220))
+
 ## 1.1.0 (2026-03-05)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.0.0...v1.1.0)
