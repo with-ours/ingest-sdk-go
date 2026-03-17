@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.2 (2026-03-17)
+
+Full Changelog: [v1.1.1...v1.1.2](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.1...v1.1.2)
+
+### Chores
+
+* **internal:** tweak CI branches ([ab3df17](https://github.com/with-ours/ingest-sdk-go/commit/ab3df1788f43bdaf5a04eea6253cee92876b990a))
+
 ## 1.1.1 (2026-03-11)
 
 Full Changelog: [v1.1.0...v1.1.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.0...v1.1.1)
