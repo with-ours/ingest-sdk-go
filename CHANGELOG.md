@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.3 (2026-03-25)
+
+Full Changelog: [v1.1.2...v1.1.3](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.2...v1.1.3)
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([277f854](https://github.com/with-ours/ingest-sdk-go/commit/277f854a9bbd3ec79c0f110dc55666a19ed3f4c4))
+* **internal:** update gitignore ([88895df](https://github.com/with-ours/ingest-sdk-go/commit/88895df12ffdb37472958219e541825dbf7c3bb1))
+
 ## 1.1.2 (2026-03-17)
 
 Full Changelog: [v1.1.1...v1.1.2](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.1...v1.1.2)
