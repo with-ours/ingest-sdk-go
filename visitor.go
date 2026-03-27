@@ -105,6 +105,7 @@ type VisitorUpsertParamsUserProperties struct {
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
 	Alart       param.Opt[string] `json:"alart,omitzero"`
 	Aleid       param.Opt[string] `json:"aleid,omitzero"`
+	Axwrt       param.Opt[string] `json:"axwrt,omitzero"`
 	BasisCid    param.Opt[string] `json:"basis_cid,omitzero"`
 	CampaignID  param.Opt[string] `json:"campaign_id,omitzero"`
 	City        param.Opt[string] `json:"city,omitzero"`
@@ -183,6 +184,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	Alart param.Opt[string] `json:"alart,omitzero"`
 	// The AppLovin aleid query parameter. Ex: aleid123
 	Aleid param.Opt[string] `json:"aleid,omitzero"`
+	// The AppLovin Axon pixel cookie value (\_axwrt). Web-only.
+	Axwrt param.Opt[string] `json:"axwrt,omitzero"`
 	// The Basis DSP Click ID. Ex: basis_cid123
 	BasisCid param.Opt[string] `json:"basis_cid,omitzero"`
 	// The language of the browser. Ex: en-US
