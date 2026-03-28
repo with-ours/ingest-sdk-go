@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.0 (2026-03-28)
+
+Full Changelog: [v1.1.3...v1.2.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.3...v1.2.0)
+
+### Features
+
+* **api:** api update ([d394cc0](https://github.com/with-ours/ingest-sdk-go/commit/d394cc067f3244e661cc8e90ae67cabf408c2066))
+* **internal:** support comma format in multipart form encoding ([a843265](https://github.com/with-ours/ingest-sdk-go/commit/a8432652dc0da619c4cca1176d85d2bdffb22a99))
+
+
+### Bug Fixes
+
+* prevent duplicate ? in query params ([daf1b4a](https://github.com/with-ours/ingest-sdk-go/commit/daf1b4af8aff6cdc38a8d8130c63f54a57e47deb))
+
+
+### Chores
+
+* **ci:** support opting out of skipping builds on metadata-only commits ([1c2b573](https://github.com/with-ours/ingest-sdk-go/commit/1c2b5738ab6d2496563087c4af2c16632f5a9736))
+* **client:** fix multipart serialisation of Default() fields ([963a604](https://github.com/with-ours/ingest-sdk-go/commit/963a604971d46ebf602cdbca4ce13020c256eefb))
+* **internal:** support default value struct tag ([21e8e96](https://github.com/with-ours/ingest-sdk-go/commit/21e8e967c5cc46b298c1dc606e880e593d1ddc45))
+* remove unnecessary error check for url parsing ([42d8b43](https://github.com/with-ours/ingest-sdk-go/commit/42d8b43e1ce1275181e3249bf0a55d92b80618fb))
+* update docs for api:"required" ([56f7e78](https://github.com/with-ours/ingest-sdk-go/commit/56f7e784e3c32a1428592161d6fc0af8310bd73e))
+
 ## 1.1.3 (2026-03-25)
 
 Full Changelog: [v1.1.2...v1.1.3](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.2...v1.1.3)
