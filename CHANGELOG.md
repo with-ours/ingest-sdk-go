@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1 (2026-04-23)
+
+Full Changelog: [v1.2.0...v1.2.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.2.0...v1.2.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([d82aa2e](https://github.com/with-ours/ingest-sdk-go/commit/d82aa2eafacc61a71531c54d674d51aef6f49c57))
+
 ## 1.2.0 (2026-03-28)
 
 Full Changelog: [v1.1.3...v1.2.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.1.3...v1.2.0)
