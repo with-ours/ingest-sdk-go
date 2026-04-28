@@ -29,6 +29,7 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 		Token: "x",
 		UserProperties: oursprivacy.VisitorUpsertParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
+			AdmitadUid:  oursprivacy.String("admitad_uid"),
 			AdsetID:     oursprivacy.String("adset_id"),
 			Alart:       oursprivacy.String("alart"),
 			Aleid:       oursprivacy.String("aleid"),
@@ -93,6 +94,7 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 		DefaultProperties: oursprivacy.VisitorUpsertParamsDefaultProperties{
 			ActiveDuration:  oursprivacy.Float(0),
 			AdID:            oursprivacy.String("ad_id"),
+			AdmitadUid:      oursprivacy.String("admitad_uid"),
 			AdsetID:         oursprivacy.String("adset_id"),
 			Alart:           oursprivacy.String("alart"),
 			Aleid:           oursprivacy.String("aleid"),
