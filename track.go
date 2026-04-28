@@ -118,6 +118,8 @@ type TrackEventParamsDefaultProperties struct {
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
 	// The ad id for detected in the session. This is set by the web sdk automatically.
 	AdID param.Opt[string] `json:"ad_id,omitzero"`
+	// The Admitad (Mitgo) affiliate Click ID. Ex: admitad_uid_abc123
+	AdmitadUid param.Opt[string] `json:"admitad_uid,omitzero"`
 	// The adset id for detected in the session. This is set by the web sdk
 	// automatically.
 	AdsetID param.Opt[string] `json:"adset_id,omitzero"`
@@ -299,6 +301,7 @@ func (r *TrackEventParamsIdentityContext) UnmarshalJSON(data []byte) error {
 // properties via the identify endpoint.
 type TrackEventParamsUserProperties struct {
 	AdID        param.Opt[string] `json:"ad_id,omitzero"`
+	AdmitadUid  param.Opt[string] `json:"admitad_uid,omitzero"`
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
 	Alart       param.Opt[string] `json:"alart,omitzero"`
 	Aleid       param.Opt[string] `json:"aleid,omitzero"`
