@@ -31,6 +31,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 		DefaultProperties: oursprivacy.TrackEventParamsDefaultProperties{
 			ActiveDuration:  oursprivacy.Float(0),
 			AdID:            oursprivacy.String("ad_id"),
+			AdmitadUid:      oursprivacy.String("admitad_uid"),
 			AdsetID:         oursprivacy.String("adset_id"),
 			Alart:           oursprivacy.String("alart"),
 			Aleid:           oursprivacy.String("aleid"),
@@ -115,6 +116,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 		UserID: oursprivacy.String("x"),
 		UserProperties: oursprivacy.TrackEventParamsUserProperties{
 			AdID:        oursprivacy.String("ad_id"),
+			AdmitadUid:  oursprivacy.String("admitad_uid"),
 			AdsetID:     oursprivacy.String("adset_id"),
 			Alart:       oursprivacy.String("alart"),
 			Aleid:       oursprivacy.String("aleid"),

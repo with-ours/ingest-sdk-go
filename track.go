@@ -35,8 +35,11 @@ func NewTrackService(opts ...option.RequestOption) (r TrackService) {
 
 // Track events from your server. Please include at least one of: userId,
 // externalId, or email. These properties help us associate events with existing
-// users. For all fields, null values unset the property and undefined values do
-// not unset existing properties.
+// users. For top-level visitor properties: null clears the existing value, while
+// undefined, omitted fields, and empty strings are ignored. For entries inside
+// custom_properties: null, undefined, and empty strings are all ignored
+// (custom_properties use merge semantics). See
+// https://docs.oursprivacy.com/docs/data-types for details and common pitfalls.
 func (r *TrackService) Event(ctx context.Context, body TrackEventParams, opts ...option.RequestOption) (res *TrackEventResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
@@ -115,6 +118,8 @@ type TrackEventParamsDefaultProperties struct {
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
 	// The ad id for detected in the session. This is set by the web sdk automatically.
 	AdID param.Opt[string] `json:"ad_id,omitzero"`
+	// The Admitad (Mitgo) affiliate Click ID. Ex: admitad_uid_abc123
+	AdmitadUid param.Opt[string] `json:"admitad_uid,omitzero"`
 	// The adset id for detected in the session. This is set by the web sdk
 	// automatically.
 	AdsetID param.Opt[string] `json:"adset_id,omitzero"`
@@ -296,6 +301,7 @@ func (r *TrackEventParamsIdentityContext) UnmarshalJSON(data []byte) error {
 // properties via the identify endpoint.
 type TrackEventParamsUserProperties struct {
 	AdID        param.Opt[string] `json:"ad_id,omitzero"`
+	AdmitadUid  param.Opt[string] `json:"admitad_uid,omitzero"`
 	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
 	Alart       param.Opt[string] `json:"alart,omitzero"`
 	Aleid       param.Opt[string] `json:"aleid,omitzero"`
