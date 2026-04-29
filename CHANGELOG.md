@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0 (2026-04-29)
+
+Full Changelog: [v1.2.1...v1.3.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.2.1...v1.3.0)
+
+### Features
+
+* **api:** api update ([faf6737](https://github.com/with-ours/ingest-sdk-go/commit/faf673779164018959162a849cbb71cc172b919a))
+* **api:** api update ([bedcea2](https://github.com/with-ours/ingest-sdk-go/commit/bedcea241945b71ac03cfcdd5f314d931790dd66))
+* **go:** add default http client with timeout ([7cceb57](https://github.com/with-ours/ingest-sdk-go/commit/7cceb570e10eafd16291fa03da4b8b74d6b6d1d5))
+* support setting headers via env ([1c1106c](https://github.com/with-ours/ingest-sdk-go/commit/1c1106cfb6891aa65bda2d38732d4d91d79d6def))
+
 ## 1.2.1 (2026-04-23)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.2.0...v1.2.1)
