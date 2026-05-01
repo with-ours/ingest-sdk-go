@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.1 (2026-05-01)
+
+Full Changelog: [v1.3.0...v1.3.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.3.0...v1.3.1)
+
+### Chores
+
+* avoid embedding reflect.Type for dead code elimination ([596cb92](https://github.com/with-ours/ingest-sdk-go/commit/596cb92b8e651c1e22d744c891d4bb7e497ff165))
+
 ## 1.3.0 (2026-04-29)
 
 Full Changelog: [v1.2.1...v1.3.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.2.1...v1.3.0)
