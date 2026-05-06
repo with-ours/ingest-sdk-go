@@ -20,6 +20,7 @@ type Client struct {
 	Options []option.RequestOption
 	Track   TrackService
 	Visitor VisitorService
+	Batch   BatchService
 }
 
 // DefaultClientOptions read from the environment (OURS_PRIVACY_BASE_URL). This
@@ -51,6 +52,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 
 	r.Track = NewTrackService(opts...)
 	r.Visitor = NewVisitorService(opts...)
+	r.Batch = NewBatchService(opts...)
 
 	return
 }
