@@ -28,8 +28,8 @@ func TestBatchNew(t *testing.T) {
 	_, err := client.Batch.New(context.TODO(), oursprivacy.BatchNewParams{
 		Token: "x",
 		Events: []oursprivacy.BatchNewParamsEvent{{
-			Event: "x",
-			Token: oursprivacy.String("x"),
+			DistinctID: "x",
+			Event:      "x",
 			DefaultProperties: oursprivacy.BatchNewParamsEventDefaultProperties{
 				ActiveDuration:  oursprivacy.Float(0),
 				AdID:            oursprivacy.String("ad_id"),
@@ -104,8 +104,7 @@ func TestBatchNew(t *testing.T) {
 				Wbraid:          oursprivacy.String("wbraid"),
 				Webview:         oursprivacy.Bool(true),
 			},
-			DistinctID: oursprivacy.String("x"),
-			Email:      oursprivacy.String("x"),
+			Email: oursprivacy.String("x"),
 			EventProperties: map[string]string{
 				"foo": "string",
 			},

@@ -4,6 +4,7 @@ package oursprivacy
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 	"slices"
 
@@ -45,12 +46,10 @@ func (r *BatchService) New(ctx context.Context, body BatchNewParams, opts ...opt
 }
 
 type BatchNewResponse struct {
-	Accepted int64 `json:"accepted" api:"required"`
-	// Any of 0.
-	Failed  float64                  `json:"failed" api:"required"`
-	Results []BatchNewResponseResult `json:"results" api:"required"`
-	// Any of true.
-	Success bool `json:"success" api:"required"`
+	Accepted int64                         `json:"accepted" api:"required"`
+	Failed   int64                         `json:"failed" api:"required"`
+	Results  []BatchNewResponseResultUnion `json:"results" api:"required"`
+	Success  bool                          `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Accepted    respjson.Field
@@ -68,7 +67,44 @@ func (r *BatchNewResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type BatchNewResponseResult struct {
+// BatchNewResponseResultUnion contains all possible properties and values from
+// [BatchNewResponseResultObject], [BatchNewResponseResultObject2].
+//
+// Use the methods beginning with 'As' to cast the union to one of its variants.
+type BatchNewResponseResultUnion struct {
+	Index   int64 `json:"index"`
+	Success bool  `json:"success"`
+	// This field is from variant [BatchNewResponseResultObject2].
+	Code string `json:"code"`
+	// This field is from variant [BatchNewResponseResultObject2].
+	Message string `json:"message"`
+	JSON    struct {
+		Index   respjson.Field
+		Success respjson.Field
+		Code    respjson.Field
+		Message respjson.Field
+		raw     string
+	} `json:"-"`
+}
+
+func (u BatchNewResponseResultUnion) AsBatchNewResponseResultObject() (v BatchNewResponseResultObject) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+func (u BatchNewResponseResultUnion) AsBatchNewResponseResultObject2() (v BatchNewResponseResultObject2) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+// Returns the unmodified JSON received from the API
+func (u BatchNewResponseResultUnion) RawJSON() string { return u.JSON.raw }
+
+func (r *BatchNewResponseResultUnion) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BatchNewResponseResultObject struct {
 	Index int64 `json:"index" api:"required"`
 	// Any of true.
 	Success bool `json:"success" api:"required"`
@@ -82,8 +118,32 @@ type BatchNewResponseResult struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r BatchNewResponseResult) RawJSON() string { return r.JSON.raw }
-func (r *BatchNewResponseResult) UnmarshalJSON(data []byte) error {
+func (r BatchNewResponseResultObject) RawJSON() string { return r.JSON.raw }
+func (r *BatchNewResponseResultObject) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BatchNewResponseResultObject2 struct {
+	// Any of "invalid_event", "queue_failed".
+	Code    string `json:"code" api:"required"`
+	Index   int64  `json:"index" api:"required"`
+	Message string `json:"message" api:"required"`
+	// Any of false.
+	Success bool `json:"success" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Code        respjson.Field
+		Index       respjson.Field
+		Message     respjson.Field
+		Success     respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r BatchNewResponseResultObject2) RawJSON() string { return r.JSON.raw }
+func (r *BatchNewResponseResultObject2) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -103,13 +163,13 @@ func (r *BatchNewParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-// The property Event is required.
+// The properties DistinctID, Event are required.
 type BatchNewParamsEvent struct {
+	// A unique identifier for the event. This helps prevent duplicate events.
+	DistinctID string `json:"distinctId" api:"required"`
 	// The name of the event you're tracking. This must be whitelisted in the Ours
 	// dashboard.
 	Event string `json:"event" api:"required"`
-	// A unique identifier for the event. This helps prevent duplicate events.
-	DistinctID param.Opt[string] `json:"distinctId,omitzero"`
 	// The email address of a user. We will associate this event with the user or
 	// create a user. Used for lookup if externalId and userId are not included in the
 	// request.
@@ -125,8 +185,6 @@ type BatchNewParamsEvent struct {
 	// userId is included in the request, we do not lookup the user by email or
 	// externalId.
 	UserID param.Opt[string] `json:"userId,omitzero"`
-	// The token for your Source. You can find this in the dashboard.
-	Token param.Opt[string] `json:"token,omitzero"`
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
 	DefaultProperties BatchNewParamsEventDefaultProperties `json:"defaultProperties,omitzero"`
