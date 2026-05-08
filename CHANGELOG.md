@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.6.1 (2026-05-08)
+
+Full Changelog: [v1.6.0...v1.6.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.6.0...v1.6.1)
+
+### Bug Fixes
+
+* **go:** avoid panic when http.DefaultTransport is wrapped ([f000bf5](https://github.com/with-ours/ingest-sdk-go/commit/f000bf564f577161acfeae5d76adb6025c94de8d))
+
+
+### Chores
+
+* redact api-key headers in debug logs ([66821b3](https://github.com/with-ours/ingest-sdk-go/commit/66821b347cdb1088bc7a87541c8edc14b38515a8))
+
 ## 1.6.0 (2026-05-07)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.5.0...v1.6.0)
