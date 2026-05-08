@@ -217,6 +217,9 @@ func (r *BatchNewParamsEvent) UnmarshalJSON(data []byte) error {
 // These properties are used throughout the Ours app to pass known values onto
 // destinations
 type BatchNewParamsEventDefaultProperties struct {
+	// The Everflow affiliate Click (Transaction) ID, captured from the
+	// `_ef_transaction_id` URL parameter. Ex: ef_click_abc123
+	EfTransactionID param.Opt[string] `json:"_ef_transaction_id,omitzero"`
 	// The active time in milliseconds that the user had this tab active
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
 	// The ad id for detected in the session. This is set by the web sdk automatically.
@@ -403,33 +406,34 @@ func (r *BatchNewParamsEventIdentityContext) UnmarshalJSON(data []byte) error {
 // Properties to set on the visitor. (optional) You can also update these
 // properties via the identify endpoint.
 type BatchNewParamsEventUserProperties struct {
-	AdID        param.Opt[string] `json:"ad_id,omitzero"`
-	AdmitadUid  param.Opt[string] `json:"admitad_uid,omitzero"`
-	AdsetID     param.Opt[string] `json:"adset_id,omitzero"`
-	Alart       param.Opt[string] `json:"alart,omitzero"`
-	Aleid       param.Opt[string] `json:"aleid,omitzero"`
-	Axwrt       param.Opt[string] `json:"axwrt,omitzero"`
-	BasisCid    param.Opt[string] `json:"basis_cid,omitzero"`
-	CampaignID  param.Opt[string] `json:"campaign_id,omitzero"`
-	City        param.Opt[string] `json:"city,omitzero"`
-	Clickid     param.Opt[string] `json:"clickid,omitzero"`
-	Clid        param.Opt[string] `json:"clid,omitzero"`
-	CompanyName param.Opt[string] `json:"company_name,omitzero"`
-	Country     param.Opt[string] `json:"country,omitzero"`
-	DateOfBirth param.Opt[string] `json:"date_of_birth,omitzero"`
-	Dclid       param.Opt[string] `json:"dclid,omitzero"`
-	Email       param.Opt[string] `json:"email,omitzero"`
-	Epik        param.Opt[string] `json:"epik,omitzero"`
-	ExternalID  param.Opt[string] `json:"external_id,omitzero"`
-	Fbc         param.Opt[string] `json:"fbc,omitzero"`
-	Fbclid      param.Opt[string] `json:"fbclid,omitzero"`
-	Fbp         param.Opt[string] `json:"fbp,omitzero"`
-	FirstName   param.Opt[string] `json:"first_name,omitzero"`
-	GadSource   param.Opt[string] `json:"gad_source,omitzero"`
-	Gbraid      param.Opt[string] `json:"gbraid,omitzero"`
-	Gclid       param.Opt[string] `json:"gclid,omitzero"`
-	Gender      param.Opt[string] `json:"gender,omitzero"`
-	ImRef       param.Opt[string] `json:"im_ref,omitzero"`
+	EfTransactionID param.Opt[string] `json:"_ef_transaction_id,omitzero"`
+	AdID            param.Opt[string] `json:"ad_id,omitzero"`
+	AdmitadUid      param.Opt[string] `json:"admitad_uid,omitzero"`
+	AdsetID         param.Opt[string] `json:"adset_id,omitzero"`
+	Alart           param.Opt[string] `json:"alart,omitzero"`
+	Aleid           param.Opt[string] `json:"aleid,omitzero"`
+	Axwrt           param.Opt[string] `json:"axwrt,omitzero"`
+	BasisCid        param.Opt[string] `json:"basis_cid,omitzero"`
+	CampaignID      param.Opt[string] `json:"campaign_id,omitzero"`
+	City            param.Opt[string] `json:"city,omitzero"`
+	Clickid         param.Opt[string] `json:"clickid,omitzero"`
+	Clid            param.Opt[string] `json:"clid,omitzero"`
+	CompanyName     param.Opt[string] `json:"company_name,omitzero"`
+	Country         param.Opt[string] `json:"country,omitzero"`
+	DateOfBirth     param.Opt[string] `json:"date_of_birth,omitzero"`
+	Dclid           param.Opt[string] `json:"dclid,omitzero"`
+	Email           param.Opt[string] `json:"email,omitzero"`
+	Epik            param.Opt[string] `json:"epik,omitzero"`
+	ExternalID      param.Opt[string] `json:"external_id,omitzero"`
+	Fbc             param.Opt[string] `json:"fbc,omitzero"`
+	Fbclid          param.Opt[string] `json:"fbclid,omitzero"`
+	Fbp             param.Opt[string] `json:"fbp,omitzero"`
+	FirstName       param.Opt[string] `json:"first_name,omitzero"`
+	GadSource       param.Opt[string] `json:"gad_source,omitzero"`
+	Gbraid          param.Opt[string] `json:"gbraid,omitzero"`
+	Gclid           param.Opt[string] `json:"gclid,omitzero"`
+	Gender          param.Opt[string] `json:"gender,omitzero"`
+	ImRef           param.Opt[string] `json:"im_ref,omitzero"`
 	// The IP address of the user
 	IP                param.Opt[string] `json:"ip,omitzero"`
 	Irclickid         param.Opt[string] `json:"irclickid,omitzero"`
