@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.0 (2026-05-14)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **api:** api update ([d8efcf8](https://github.com/with-ours/ingest-sdk-go/commit/d8efcf833b638cb707ccef1a86e57f2a23b20b47))
+* **client:** optimize json encoder for internal types ([b509e47](https://github.com/with-ours/ingest-sdk-go/commit/b509e47e1b439af667c74b9ed16d3c6c6f735f46))
+
 ## 1.7.0 (2026-05-08)
 
 Full Changelog: [v1.6.1...v1.7.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.6.1...v1.7.0)
