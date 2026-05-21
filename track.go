@@ -274,6 +274,14 @@ type TrackEventParamsDefaultProperties struct {
 	UtmTerm param.Opt[string] `json:"utm_term,omitzero"`
 	// The version of the web SDK
 	Version param.Opt[string] `json:"version,omitzero"`
+	// The Viant (Adelphic) Click ID, captured from the `viant_click_id` URL parameter
+	// (Viant `${ADELPHIC_CLICKID}` macro). Sent as `xid` on Viant postbacks. Ex:
+	// viant_click_abc123
+	ViantClickID param.Opt[string] `json:"viant_click_id,omitzero"`
+	// The Viant (Adelphic) Impression ID, captured from the `viant_impression_id` URL
+	// parameter (Viant `${ADELPHIC_IMPRESSIONID}` macro). Sent as `imp_id` on Viant
+	// postbacks for post-view attribution. Ex: viant_imp_abc123
+	ViantImpressionID param.Opt[string] `json:"viant_impression_id,omitzero"`
 	// The WBRAID Identifier. The web SDK automatically captures this from the query
 	// params.
 	Wbraid param.Opt[string] `json:"wbraid,omitzero"`
@@ -371,6 +379,8 @@ type TrackEventParamsUserProperties struct {
 	UtmName           param.Opt[string] `json:"utm_name,omitzero"`
 	UtmSource         param.Opt[string] `json:"utm_source,omitzero"`
 	UtmTerm           param.Opt[string] `json:"utm_term,omitzero"`
+	ViantClickID      param.Opt[string] `json:"viant_click_id,omitzero"`
+	ViantImpressionID param.Opt[string] `json:"viant_impression_id,omitzero"`
 	Wbraid            param.Opt[string] `json:"wbraid,omitzero"`
 	Zip               param.Opt[string] `json:"zip,omitzero"`
 	Consent           map[string]string `json:"consent,omitzero"`
