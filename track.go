@@ -218,6 +218,11 @@ type TrackEventParamsDefaultProperties struct {
 	Ndclid param.Opt[string] `json:"ndclid,omitzero"`
 	// Deprecated
 	NewS param.Opt[bool] `json:"new_s,omitzero"`
+	// The OpenAI Ads privacy-preserving reference, captured from the `oppref` URL
+	// parameter on landing pages (the OpenAI Pixel also stores it in a `__oppref`
+	// cookie). Sent to OpenAI Ads on Conversions API events for attribution. Ex:
+	// oppref_abc
+	Oppref param.Opt[string] `json:"oppref,omitzero"`
 	// The name of the operating system. Ex: Windows
 	OsName param.Opt[string] `json:"os_name,omitzero"`
 	// The version of the operating system. Ex: 10.0
@@ -360,6 +365,7 @@ type TrackEventParamsUserProperties struct {
 	LiFatID           param.Opt[string] `json:"li_fat_id,omitzero"`
 	Msclkid           param.Opt[string] `json:"msclkid,omitzero"`
 	Ndclid            param.Opt[string] `json:"ndclid,omitzero"`
+	Oppref            param.Opt[string] `json:"oppref,omitzero"`
 	PhoneNumber       param.Opt[string] `json:"phone_number,omitzero"`
 	Qclid             param.Opt[string] `json:"qclid,omitzero"`
 	RdtCid            param.Opt[string] `json:"rdt_cid,omitzero"`
