@@ -17,10 +17,11 @@ import (
 // interacting with the ours-privacy API. You should not instantiate this client
 // directly, and instead use the [NewClient] method instead.
 type Client struct {
-	Options []option.RequestOption
-	Batch   BatchService
-	Track   TrackService
-	Visitor VisitorService
+	Options     []option.RequestOption
+	Batch       BatchService
+	Track       TrackService
+	Visitor     VisitorService
+	Experiments ExperimentService
 }
 
 // DefaultClientOptions read from the environment (OURS_PRIVACY_BASE_URL). This
@@ -53,6 +54,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Batch = NewBatchService(opts...)
 	r.Track = NewTrackService(opts...)
 	r.Visitor = NewVisitorService(opts...)
+	r.Experiments = NewExperimentService(opts...)
 
 	return
 }
