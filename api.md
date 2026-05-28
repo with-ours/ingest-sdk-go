@@ -27,3 +27,15 @@ Response Types:
 Methods:
 
 - <code title="post /identify">client.Visitor.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#VisitorService.Upsert">Upsert</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#VisitorUpsertParams">VisitorUpsertParams</a>) (\*<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#VisitorUpsertResponse">VisitorUpsertResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Experiments
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentAssignmentResponseUnion">ExperimentAssignmentResponseUnion</a>
+- <a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentPersonalizationResponse">ExperimentPersonalizationResponse</a>
+
+Methods:
+
+- <code title="post /experiments/assignments/{experiment_key}">client.Experiments.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentService.Assignment">Assignment</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, experimentKey <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentAssignmentParams">ExperimentAssignmentParams</a>) (\*<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentAssignmentResponseUnion">ExperimentAssignmentResponseUnion</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /experiments/personalization">client.Experiments.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentService.Personalization">Personalization</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentPersonalizationParams">ExperimentPersonalizationParams</a>) (\*<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go">oursprivacy</a>.<a href="https://pkg.go.dev/github.com/with-ours/ingest-sdk-go#ExperimentPersonalizationResponse">ExperimentPersonalizationResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
