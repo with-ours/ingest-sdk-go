@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.12.0 (2026-06-03)
+
+Full Changelog: [v1.11.0...v1.12.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.11.0...v1.12.0)
+
+### Features
+
+* **api:** api update ([2e7d58a](https://github.com/with-ours/ingest-sdk-go/commit/2e7d58a29224ab28c89abf18f4f5041b50025051))
+
 ## 1.11.0 (2026-05-28)
 
 Full Changelog: [v1.10.0...v1.11.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.10.0...v1.11.0)
