@@ -218,6 +218,9 @@ type TrackEventParamsDefaultProperties struct {
 	Ndclid param.Opt[string] `json:"ndclid,omitzero"`
 	// Deprecated
 	NewS param.Opt[bool] `json:"new_s,omitzero"`
+	// The Outbrain click ID, captured from the `ob_click_id` URL parameter (Outbrain
+	// `{{ob_click_id}}` macro) on the landing page. Ex: ob_click_abc123
+	ObClickID param.Opt[string] `json:"ob_click_id,omitzero"`
 	// The OpenAI Ads privacy-preserving reference, captured from the `oppref` URL
 	// parameter on landing pages (the OpenAI Pixel also stores it in a `__oppref`
 	// cookie). Sent to OpenAI Ads on Conversions API events for attribution. Ex:
@@ -365,6 +368,7 @@ type TrackEventParamsUserProperties struct {
 	LiFatID           param.Opt[string] `json:"li_fat_id,omitzero"`
 	Msclkid           param.Opt[string] `json:"msclkid,omitzero"`
 	Ndclid            param.Opt[string] `json:"ndclid,omitzero"`
+	ObClickID         param.Opt[string] `json:"ob_click_id,omitzero"`
 	Oppref            param.Opt[string] `json:"oppref,omitzero"`
 	PhoneNumber       param.Opt[string] `json:"phone_number,omitzero"`
 	Qclid             param.Opt[string] `json:"qclid,omitzero"`
