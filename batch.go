@@ -233,7 +233,7 @@ type BatchNewParamsEventDefaultProperties struct {
 	Alart param.Opt[string] `json:"alart,omitzero"`
 	// The AppLovin aleid query parameter. Ex: aleid123
 	Aleid param.Opt[string] `json:"aleid,omitzero"`
-	// The AppLovin Axon pixel cookie value (\_axwrt). Web-only.
+	// The AppLovin pixel cookie value (\_axwrt). Web-only.
 	Axwrt param.Opt[string] `json:"axwrt,omitzero"`
 	// The Basis DSP Click ID. Ex: basis_cid123
 	BasisCid param.Opt[string] `json:"basis_cid,omitzero"`
