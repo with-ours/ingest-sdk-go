@@ -84,6 +84,8 @@ type ExperimentAssignmentResponseUnion struct {
 	// This field is from variant [ExperimentAssignmentResponseObject].
 	IsControl bool `json:"is_control"`
 	// This field is from variant [ExperimentAssignmentResponseObject].
+	Redirect string `json:"redirect"`
+	// This field is from variant [ExperimentAssignmentResponseObject].
 	Type string `json:"type"`
 	// This field is from variant [ExperimentAssignmentResponseObject].
 	VariantName string `json:"variant_name"`
@@ -95,6 +97,7 @@ type ExperimentAssignmentResponseUnion struct {
 		ExperimentKey  respjson.Field
 		ExperimentName respjson.Field
 		IsControl      respjson.Field
+		Redirect       respjson.Field
 		Type           respjson.Field
 		VariantName    respjson.Field
 		raw            string
@@ -128,8 +131,13 @@ type ExperimentAssignmentResponseObject struct {
 	ExperimentKey  string `json:"experiment_key" api:"nullable"`
 	ExperimentName string `json:"experiment_name" api:"nullable"`
 	IsControl      bool   `json:"is_control" api:"nullable"`
-	Type           string `json:"type" api:"nullable"`
-	VariantName    string `json:"variant_name" api:"nullable"`
+	// Redirect destination for redirect (split-URL) variants — a same-domain relative
+	// path or an absolute https:// URL. Present only when the assigned variant is a
+	// redirect; absent for on-page (DOM-modification) variants. Read it straight off
+	// the payload and issue the redirect server-side.
+	Redirect    string `json:"redirect" api:"nullable"`
+	Type        string `json:"type" api:"nullable"`
+	VariantName string `json:"variant_name" api:"nullable"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ExperimentID   respjson.Field
@@ -139,6 +147,7 @@ type ExperimentAssignmentResponseObject struct {
 		ExperimentKey  respjson.Field
 		ExperimentName respjson.Field
 		IsControl      respjson.Field
+		Redirect       respjson.Field
 		Type           respjson.Field
 		VariantName    respjson.Field
 		ExtraFields    map[string]respjson.Field
