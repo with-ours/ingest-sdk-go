@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.16.1 (2026-08-03)
+
+Full Changelog: [v1.16.0...v1.16.1](https://github.com/with-ours/ingest-sdk-go/compare/v1.16.0...v1.16.1)
+
+### Chores
+
+* add CODEOWNERS ([#39](https://github.com/with-ours/ingest-sdk-go/issues/39)) ([9dfd579](https://github.com/with-ours/ingest-sdk-go/commit/9dfd5793edfe09560395df2f645f31d9bd2c00dc))
+
 ## 1.16.0 (2026-07-21)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.15.0...v1.16.0)
