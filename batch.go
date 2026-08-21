@@ -34,9 +34,10 @@ func NewBatchService(opts ...option.RequestOption) (r BatchService) {
 	return
 }
 
-// Send multiple `/track`-shaped events in a single request. The top-level token is
-// authorized once for the full batch. Each batch row must include `distinctId`,
-// and mixed validation or queue outcomes are reported per row.
+// Send multiple `/track`-shaped events in a single request. This endpoint is
+// intended for replay, backfill, and asynchronous bulk delivery. The top-level
+// token is authorized once for the full batch. Each batch row must include
+// `distinctId`, and mixed validation or queue outcomes are reported per row.
 func (r *BatchService) New(ctx context.Context, body BatchNewParams, opts ...option.RequestOption) (res *BatchNewResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
