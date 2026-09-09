@@ -376,7 +376,7 @@ type BatchNewParamsEventDefaultProperties struct {
 	UtmSource param.Opt[string] `json:"utm_source,omitzero"`
 	// The UTM Term. The web SDK automatically captures this from the query params.
 	UtmTerm param.Opt[string] `json:"utm_term,omitzero"`
-	// The SDK version (e.g., web SDK or ingest-sdk-\* via Stainless headers)
+	// The SDK version (e.g., web SDK or ingest-sdk-\* via generated SDK headers)
 	Version param.Opt[string] `json:"version,omitzero"`
 	// The Viant (Adelphic) Click ID, captured from the `viant_click_id` URL parameter
 	// (Viant `${ADELPHIC_CLICKID}` macro). Sent as `xid` on Viant postbacks. Ex:
