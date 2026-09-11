@@ -53,10 +53,13 @@ func (r *ExperimentService) Assignment(ctx context.Context, experimentKey string
 	return res, err
 }
 
-// Return the active personalization assignments for a visitor. Read-only and never
-// records an impression. Personalizations are populated by the event-driven rule
-// engine — until that ships, this endpoint returns an empty list for every
-// visitor, which is the correct fail-closed behavior (no false positives).
+// Return a visitor's active personalization assignments and accumulated
+// personalization properties. Read-only and never records an impression.
+// `personalizations` lists the personalization experiences the visitor is
+// currently assigned to; `properties` returns the visitor traits your
+// personalization property rules have accumulated, ready to use in server-rendered
+// copy or targeting. Both are empty for a visitor who has not matched anything
+// yet.
 func (r *ExperimentService) Personalization(ctx context.Context, body ExperimentPersonalizationParams, opts ...option.RequestOption) (res *ExperimentPersonalizationResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
@@ -183,11 +186,19 @@ func (r *ExperimentAssignmentResponseObject2) UnmarshalJSON(data []byte) error {
 
 type ExperimentPersonalizationResponse struct {
 	Personalizations []ExperimentPersonalizationResponsePersonalization `json:"personalizations" api:"required"`
+	// The visitor traits accumulated by your personalization property rules, keyed by
+	// property key. Values are always scalars — a string, number, or boolean, or null
+	// when the captured field was itself empty. Empty for a visitor who has not
+	// matched any rule yet. These same values are delivered to the visitor's browser
+	// and are readable by anyone who knows the visitor_id, so never accumulate
+	// secrets, credentials, PHI, or confidential data into a property.
+	Properties map[string]ExperimentPersonalizationResponsePropertyUnion `json:"properties" api:"required"`
 	// Any of true.
 	Success bool `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Personalizations respjson.Field
+		Properties       respjson.Field
 		Success          respjson.Field
 		ExtraFields      map[string]respjson.Field
 		raw              string
@@ -223,6 +234,50 @@ type ExperimentPersonalizationResponsePersonalization struct {
 // Returns the unmodified JSON received from the API
 func (r ExperimentPersonalizationResponsePersonalization) RawJSON() string { return r.JSON.raw }
 func (r *ExperimentPersonalizationResponsePersonalization) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// ExperimentPersonalizationResponsePropertyUnion contains all possible properties
+// and values from [string], [float64], [bool].
+//
+// Use the methods beginning with 'As' to cast the union to one of its variants.
+//
+// If the underlying value is not a json object, one of the following properties
+// will be valid: OfString OfFloat OfBool]
+type ExperimentPersonalizationResponsePropertyUnion struct {
+	// This field will be present if the value is a [string] instead of an object.
+	OfString string `json:",inline"`
+	// This field will be present if the value is a [float64] instead of an object.
+	OfFloat float64 `json:",inline"`
+	// This field will be present if the value is a [bool] instead of an object.
+	OfBool bool `json:",inline"`
+	JSON   struct {
+		OfString respjson.Field
+		OfFloat  respjson.Field
+		OfBool   respjson.Field
+		raw      string
+	} `json:"-"`
+}
+
+func (u ExperimentPersonalizationResponsePropertyUnion) AsString() (v string) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+func (u ExperimentPersonalizationResponsePropertyUnion) AsFloat() (v float64) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+func (u ExperimentPersonalizationResponsePropertyUnion) AsBool() (v bool) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+// Returns the unmodified JSON received from the API
+func (u ExperimentPersonalizationResponsePropertyUnion) RawJSON() string { return u.JSON.raw }
+
+func (r *ExperimentPersonalizationResponsePropertyUnion) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
