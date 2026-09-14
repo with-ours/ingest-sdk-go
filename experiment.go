@@ -53,13 +53,10 @@ func (r *ExperimentService) Assignment(ctx context.Context, experimentKey string
 	return res, err
 }
 
-// Return a visitor's active personalization assignments and accumulated
-// personalization properties. Read-only and never records an impression.
-// `personalizations` lists the personalization experiences the visitor is
-// currently assigned to; `properties` returns the visitor traits your
-// personalization property rules have accumulated, ready to use in server-rendered
-// copy or targeting. Both are empty for a visitor who has not matched anything
-// yet.
+// Return the visitor traits accumulated by personalization property rules.
+// Read-only and never records an impression. Use the properties to select
+// personalized server-rendered copy or targeting; the browser experiment runtime
+// receives the same bag at initialization.
 func (r *ExperimentService) Personalization(ctx context.Context, body ExperimentPersonalizationParams, opts ...option.RequestOption) (res *ExperimentPersonalizationResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://api.oursprivacy.com/api/v1/")}, opts...)
@@ -185,7 +182,6 @@ func (r *ExperimentAssignmentResponseObject2) UnmarshalJSON(data []byte) error {
 }
 
 type ExperimentPersonalizationResponse struct {
-	Personalizations []ExperimentPersonalizationResponsePersonalization `json:"personalizations" api:"required"`
 	// The visitor traits accumulated by your personalization property rules, keyed by
 	// property key. Values are always scalars — a string, number, or boolean, or null
 	// when the captured field was itself empty. Empty for a visitor who has not
@@ -197,43 +193,16 @@ type ExperimentPersonalizationResponse struct {
 	Success bool `json:"success" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Personalizations respjson.Field
-		Properties       respjson.Field
-		Success          respjson.Field
-		ExtraFields      map[string]respjson.Field
-		raw              string
+		Properties  respjson.Field
+		Success     respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
 	} `json:"-"`
 }
 
 // Returns the unmodified JSON received from the API
 func (r ExperimentPersonalizationResponse) RawJSON() string { return r.JSON.raw }
 func (r *ExperimentPersonalizationResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type ExperimentPersonalizationResponsePersonalization struct {
-	AssignedAt     float64 `json:"assigned_at" api:"required"`
-	ExperimentID   string  `json:"experiment_id" api:"required"`
-	VariantID      string  `json:"variant_id" api:"required"`
-	ExperimentKey  string  `json:"experiment_key" api:"nullable"`
-	ExperimentName string  `json:"experiment_name" api:"nullable"`
-	VariantName    string  `json:"variant_name" api:"nullable"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AssignedAt     respjson.Field
-		ExperimentID   respjson.Field
-		VariantID      respjson.Field
-		ExperimentKey  respjson.Field
-		ExperimentName respjson.Field
-		VariantName    respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r ExperimentPersonalizationResponsePersonalization) RawJSON() string { return r.JSON.raw }
-func (r *ExperimentPersonalizationResponsePersonalization) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
