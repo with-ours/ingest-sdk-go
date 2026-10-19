@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.22.0 (2026-10-19)
+
+Full Changelog: [v1.21.0...v1.22.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.21.0...v1.22.0)
+
+### Chores
+
+* **dependencies:** bump `github.com/tidwall/gjson` to 1.20.0 (and indirect `match`/`pretty` dependencies). Require Go 1.23+; Go 1.22 is no longer supported.
 ## 1.21.0 (2026-10-16)
 
 Full Changelog: [v1.20.0...v1.21.0](https://github.com/with-ours/ingest-sdk-go/compare/v1.20.0...v1.21.0)
