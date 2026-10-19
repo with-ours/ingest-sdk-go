@@ -33,7 +33,7 @@ go get -u 'github.com/with-ours/ingest-sdk-go@v1.21.0'
 
 ## Requirements
 
-This library requires Go 1.22+.
+This library requires Go 1.23+. Use a currently supported Go release with the latest security patches for production.
 
 ## Usage
 
