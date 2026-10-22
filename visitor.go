@@ -200,8 +200,10 @@ type VisitorUpsertParamsUserProperties struct {
 	Sid param.Opt[string] `json:"sid,omitzero"`
 	// Non-string input is converted to text before validation; clients should send a
 	// string. Leading and trailing whitespace is removed before validation.
-	State             param.Opt[string] `json:"state,omitzero"`
-	Ttclid            param.Opt[string] `json:"ttclid,omitzero"`
+	State  param.Opt[string] `json:"state,omitzero"`
+	Ttclid param.Opt[string] `json:"ttclid,omitzero"`
+	// Leading and trailing whitespace is removed before validation.
+	TtdImpressionID   param.Opt[string] `json:"ttd_impression_id,omitzero"`
 	Twclid            param.Opt[string] `json:"twclid,omitzero"`
 	UserAgent         param.Opt[string] `json:"user_agent,omitzero"`
 	UserAgentFullList param.Opt[string] `json:"user_agent_full_list,omitzero"`
@@ -228,6 +230,7 @@ type VisitorUpsertParamsUserProperties struct {
 	// Leading and trailing whitespace is removed before validation.
 	ViantImpressionID param.Opt[string] `json:"viant_impression_id,omitzero"`
 	Wbraid            param.Opt[string] `json:"wbraid,omitzero"`
+	Ylpcid            param.Opt[string] `json:"ylpcid,omitzero"`
 	// Use at most 200 nonempty property keys and five object levels. Array contents do
 	// not count toward the object-depth limit. Empty keys are removed recursively,
 	// arrays are truncated to 250 entries, and top-level numbers outside the safe
@@ -1315,6 +1318,10 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The TikTok Click ID. Ex: ttclid123 Leading and trailing whitespace is removed
 	// before validation.
 	Ttclid param.Opt[string] `json:"ttclid,omitzero"`
+	// The Trade Desk impression ID, captured from a configured ttd_impression_id URL
+	// parameter using the %%TTD_IMPRESSIONID%% creative macro. Sent as imp on
+	// conversions. Leading and trailing whitespace is removed before validation.
+	TtdImpressionID param.Opt[string] `json:"ttd_impression_id,omitzero"`
 	// The Twitter Click ID. Ex: twclid123 Leading and trailing whitespace is removed
 	// before validation.
 	Twclid param.Opt[string] `json:"twclid,omitzero"`
@@ -1359,6 +1366,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	Wbraid param.Opt[string] `json:"wbraid,omitzero"`
 	// Whether the user is in a webview. Ex: true
 	Webview param.Opt[bool] `json:"webview,omitzero"`
+	// The Yelp Click ID from the landing URL, sent unchanged and unhashed.
+	Ylpcid param.Opt[string] `json:"ylpcid,omitzero"`
 	// Any JSON value: string, number, boolean, array, object, or null.
 	IsBot VisitorUpsertParamsDefaultPropertiesIsBotUnion `json:"is_bot,omitzero"`
 	paramObj

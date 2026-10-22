@@ -99,6 +99,7 @@ func TestBatchNew(t *testing.T) {
 				Sr:                oursprivacy.String("sr"),
 				Title:             oursprivacy.String("title"),
 				Ttclid:            oursprivacy.String("ttclid"),
+				TtdImpressionID:   oursprivacy.String("ttd_impression_id"),
 				Twclid:            oursprivacy.String("twclid"),
 				Uafvl:             oursprivacy.String("uafvl"),
 				UserAgent:         oursprivacy.String("user_agent"),
@@ -113,6 +114,7 @@ func TestBatchNew(t *testing.T) {
 				ViantImpressionID: oursprivacy.String("viant_impression_id"),
 				Wbraid:            oursprivacy.String("wbraid"),
 				Webview:           oursprivacy.Bool(true),
+				Ylpcid:            oursprivacy.String("ylpcid"),
 			},
 			Email: oursprivacy.String("P"),
 			EventProperties: map[string]oursprivacy.BatchNewParamsEventEventPropertyUnion{
@@ -193,6 +195,7 @@ func TestBatchNew(t *testing.T) {
 				Sid:               oursprivacy.String("sid"),
 				State:             oursprivacy.String("state"),
 				Ttclid:            oursprivacy.String("ttclid"),
+				TtdImpressionID:   oursprivacy.String("ttd_impression_id"),
 				Twclid:            oursprivacy.String("twclid"),
 				UserAgent:         oursprivacy.String("user_agent"),
 				UserAgentFullList: oursprivacy.String("user_agent_full_list"),
@@ -205,6 +208,7 @@ func TestBatchNew(t *testing.T) {
 				ViantClickID:      oursprivacy.String("viant_click_id"),
 				ViantImpressionID: oursprivacy.String("viant_impression_id"),
 				Wbraid:            oursprivacy.String("wbraid"),
+				Ylpcid:            oursprivacy.String("ylpcid"),
 				Zip: oursprivacy.BatchNewParamsEventUserPropertiesZipUnion{
 					OfString: oursprivacy.String("string"),
 				},
