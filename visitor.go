@@ -1127,16 +1127,16 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// `_ef_transaction_id` URL parameter. Ex: ef_click_abc123 Leading and trailing
 	// whitespace is removed before validation.
 	EfTransactionID param.Opt[string] `json:"_ef_transaction_id,omitzero"`
-	// The active time in milliseconds that the user had this tab active
+	// The total time in milliseconds this tab has been visible since the page loaded
 	ActiveDuration param.Opt[float64] `json:"activeDuration,omitzero"`
-	// The ad id for detected in the session. This is set by the web sdk automatically.
+	// The ad id detected in the session. This is set by the web sdk automatically.
 	// Leading and trailing whitespace is removed before validation.
 	AdID param.Opt[string] `json:"ad_id,omitzero"`
 	// The Admitad (Mitgo) affiliate Click ID. Ex: admitad_uid_abc123 Leading and
 	// trailing whitespace is removed before validation.
 	AdmitadUid param.Opt[string] `json:"admitad_uid,omitzero"`
-	// The adset id for detected in the session. This is set by the web sdk
-	// automatically. Leading and trailing whitespace is removed before validation.
+	// The adset id detected in the session. This is set by the web sdk automatically.
+	// Leading and trailing whitespace is removed before validation.
 	AdsetID param.Opt[string] `json:"adset_id,omitzero"`
 	// The AppLovin alart query parameter. Ex: alart123 Leading and trailing whitespace
 	// is removed before validation.
@@ -1154,8 +1154,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// `{{AUCTION_ID}}` macro on creative click URLs. Ex: bx-auc-abc123 Leading and
 	// trailing whitespace is removed before validation.
 	BeeswaxAuctionID param.Opt[string] `json:"beeswax_auction_id,omitzero"`
-	// The language of the browser. Ex: en-US Leading and trailing whitespace is
-	// removed before validation.
+	// The language of the browser, lowercased. Ex: en-us Leading and trailing
+	// whitespace is removed before validation.
 	BrowserLanguage param.Opt[string] `json:"browser_language,omitzero"`
 	// The name of the browser. Ex: Chrome Leading and trailing whitespace is removed
 	// before validation.
@@ -1163,7 +1163,7 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The version of the browser. Ex: 114.0 Leading and trailing whitespace is removed
 	// before validation.
 	BrowserVersion param.Opt[string] `json:"browser_version,omitzero"`
-	// The campaign id for detected in the session. This is set by the web sdk
+	// The campaign id detected in the session. This is set by the web sdk
 	// automatically. Leading and trailing whitespace is removed before validation.
 	CampaignID param.Opt[string] `json:"campaign_id,omitzero"`
 	// The Click ID. Ex: clickid123 Leading and trailing whitespace is removed before
@@ -1172,8 +1172,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The Generic Click ID. Ex: clid123 Leading and trailing whitespace is removed
 	// before validation.
 	Clid param.Opt[string] `json:"clid,omitzero"`
-	// The architecture of the CPU. Ex: x64 Leading and trailing whitespace is removed
-	// before validation.
+	// The architecture of the CPU. Ex: amd64 Leading and trailing whitespace is
+	// removed before validation.
 	CPUArchitecture param.Opt[string] `json:"cpu_architecture,omitzero"`
 	// The full url (including query params) of the current page Leading and trailing
 	// whitespace is removed before validation.
@@ -1181,8 +1181,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The DoubleClick Click ID. Ex: dclid123 Leading and trailing whitespace is
 	// removed before validation.
 	Dclid param.Opt[string] `json:"dclid,omitzero"`
-	// The model of the device. Ex: iPhone 13 Leading and trailing whitespace is
-	// removed before validation.
+	// The model of the device. Ex: iPhone Leading and trailing whitespace is removed
+	// before validation.
 	DeviceModel param.Opt[string] `json:"device_model,omitzero"`
 	// The type of device the user is using. Ex: mobile Leading and trailing whitespace
 	// is removed before validation.
@@ -1190,9 +1190,11 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The vendor of the device. Ex: Apple Leading and trailing whitespace is removed
 	// before validation.
 	DeviceVendor param.Opt[string] `json:"device_vendor,omitzero"`
-	// The time in milliseconds since the page was loaded // script was loaded
+	// The time in milliseconds since the previous event on this page, or since the web
+	// SDK loaded for the first event. Restarts when a hidden tab becomes visible
+	// again.
 	Duration param.Opt[float64] `json:"duration,omitzero"`
-	// The browsers encoding. Ex: UTF-8 Leading and trailing whitespace is removed
+	// The browser's encoding. Ex: UTF-8 Leading and trailing whitespace is removed
 	// before validation.
 	Encoding param.Opt[string] `json:"encoding,omitzero"`
 	// The name of the browser engine. Ex: Blink Leading and trailing whitespace is
@@ -1287,7 +1289,7 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The Reddit Click ID. Ex: rdt_cid123 Leading and trailing whitespace is removed
 	// before validation.
 	RdtCid param.Opt[string] `json:"rdt_cid,omitzero"`
-	// The time the event was received by an Ours server in ISO format
+	// The time an Ours server received the event, in ISO 8601 UTC
 	ReceivedAt param.Opt[string] `json:"received_at,omitzero"`
 	// The referrer URL of the current page Leading and trailing whitespace is removed
 	// before validation.
@@ -1298,7 +1300,7 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The StackAdapt Tracking ID. Ex: sacid123 Leading and trailing whitespace is
 	// removed before validation.
 	Sacid param.Opt[string] `json:"sacid,omitzero"`
-	// The SnapChat Click ID. Ex: sccid123 Leading and trailing whitespace is removed
+	// The Snapchat Click ID. Ex: sccid123 Leading and trailing whitespace is removed
 	// before validation.
 	Sccid param.Opt[string] `json:"sccid,omitzero"`
 	// The height of the screen. Ex: 1080
@@ -1310,7 +1312,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The session ID as assigned automatically by the web SDK. This is required for
 	// session replay Leading and trailing whitespace is removed before validation.
 	Sid param.Opt[string] `json:"sid,omitzero"`
-	// Leading and trailing whitespace is removed before validation.
+	// The screen resolution as width x height in pixels. Ex: 1920x1080 Leading and
+	// trailing whitespace is removed before validation.
 	Sr param.Opt[string] `json:"sr,omitzero"`
 	// The title of the current page Leading and trailing whitespace is removed before
 	// validation.
@@ -1325,7 +1328,8 @@ type VisitorUpsertParamsDefaultProperties struct {
 	// The Twitter Click ID. Ex: twclid123 Leading and trailing whitespace is removed
 	// before validation.
 	Twclid param.Opt[string] `json:"twclid,omitzero"`
-	// User agent as a full list of strings. Leading and trailing whitespace is removed
+	// The browser brands and full versions from User-Agent Client Hints, as
+	// brand;version pairs separated by |. Leading and trailing whitespace is removed
 	// before validation.
 	Uafvl param.Opt[string] `json:"uafvl,omitzero"`
 	// The user agent of the browser Leading and trailing whitespace is removed before
