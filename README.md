@@ -28,14 +28,14 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/with-ours/ingest-sdk-go@v1.23.0'
+go get -u 'github.com/with-ours/ingest-sdk-go@v1.24.0'
 ```
 
 <!-- x-release-please-end -->
 
 ## Requirements
 
-This library requires Go 1.22+.
+This library requires Go 1.26+. Use a currently supported Go release with the latest security patches for production.
 
 ## Usage
 
