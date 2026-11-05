@@ -13,7 +13,6 @@ import (
 )
 
 func TestUsage(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,8 +24,25 @@ func TestUsage(t *testing.T) {
 		option.WithBaseURL(baseURL),
 	)
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
-		Token: "REPLACE_ME",
-		Event: "REPLACE_ME",
+		Token:      "YOUR_SOURCE_TOKEN",
+		Event:      "signup_completed",
+		DistinctID: oursprivacy.String("evt_01J9ZK3Q7X"),
+		EventProperties: map[string]oursprivacy.TrackEventParamsEventPropertyUnion{
+			"plan": {
+				OfString: oursprivacy.String("pro"),
+			},
+			"value": {
+				OfFloat: oursprivacy.Float(49),
+			},
+			"currency": {
+				OfString: oursprivacy.String("USD"),
+			},
+		},
+		ExternalID: oursprivacy.String("crm_contact_1042"),
+		IdentityContext: oursprivacy.TrackEventParamsIdentityContext{
+			IP:        "203.0.113.10",
+			UserAgent: "Mozilla/5.0",
+		},
 	})
 	if err != nil {
 		t.Fatalf("err should be nil: %s", err.Error())
