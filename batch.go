@@ -5,10 +5,12 @@ package oursprivacy
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"slices"
 
 	"github.com/with-ours/ingest-sdk-go/internal/apijson"
+	"github.com/with-ours/ingest-sdk-go/internal/redact"
 	"github.com/with-ours/ingest-sdk-go/internal/requestconfig"
 	"github.com/with-ours/ingest-sdk-go/option"
 	"github.com/with-ours/ingest-sdk-go/packages/param"
@@ -165,6 +167,10 @@ func (r *BatchNewParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+func (r BatchNewParams) Format(f fmt.State, verb rune) {
+	redact.WriteParams(f, r)
+}
+
 // The properties DistinctID, Event are required.
 type BatchNewParamsEvent struct {
 	// A unique identifier for this event used for deduplication. Highly recommended —
@@ -189,8 +195,9 @@ type BatchNewParamsEvent struct {
 	// validation; clients should send a string. Leading and trailing whitespace is
 	// removed before validation.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// The time at which the event occurred in milliseconds since UTC epoch. The time
-	// must be in the past and within the last 7 days.
+	// The time at which the event occurred in milliseconds since UTC epoch. Times
+	// older than one year are recorded as exactly one year ago, and future times as
+	// now.
 	Time param.Opt[float64] `json:"time,omitzero"`
 	// The Ours Visitor ID stored in local storage and cookies on your web properties.
 	// When present, this is used directly — no lookup by externalId, email, or phone
@@ -244,6 +251,11 @@ type BatchNewParamsEventDefaultProperties struct {
 	// The adset id detected in the session. This is set by the web sdk automatically.
 	// Leading and trailing whitespace is removed before validation.
 	AdsetID param.Opt[string] `json:"adset_id,omitzero"`
+	// The raw Affiliatly tracking cookie value (affiliatly_v3), set by the Affiliatly
+	// script when a visitor lands from an affiliate link. Web-only. Ex:
+	// id_hash=abc&id_user=123&aff_uid=45 Leading and trailing whitespace is removed
+	// before validation.
+	AffiliatlyV3 param.Opt[string] `json:"affiliatly_v3,omitzero"`
 	// The AppLovin alart query parameter. Ex: alart123 Leading and trailing whitespace
 	// is removed before validation.
 	Alart param.Opt[string] `json:"alart,omitzero"`
@@ -930,11 +942,12 @@ type BatchNewParamsEventUserProperties struct {
 	EfTransactionID param.Opt[string] `json:"_ef_transaction_id,omitzero"`
 	AdID            param.Opt[string] `json:"ad_id,omitzero"`
 	// Leading and trailing whitespace is removed before validation.
-	AdmitadUid param.Opt[string] `json:"admitad_uid,omitzero"`
-	AdsetID    param.Opt[string] `json:"adset_id,omitzero"`
-	Alart      param.Opt[string] `json:"alart,omitzero"`
-	Aleid      param.Opt[string] `json:"aleid,omitzero"`
-	Axwrt      param.Opt[string] `json:"axwrt,omitzero"`
+	AdmitadUid   param.Opt[string] `json:"admitad_uid,omitzero"`
+	AdsetID      param.Opt[string] `json:"adset_id,omitzero"`
+	AffiliatlyV3 param.Opt[string] `json:"affiliatly_v3,omitzero"`
+	Alart        param.Opt[string] `json:"alart,omitzero"`
+	Aleid        param.Opt[string] `json:"aleid,omitzero"`
+	Axwrt        param.Opt[string] `json:"axwrt,omitzero"`
 	// Leading and trailing whitespace is removed before validation.
 	BasisCid param.Opt[string] `json:"basis_cid,omitzero"`
 	// Leading and trailing whitespace is removed before validation.
