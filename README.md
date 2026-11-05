@@ -39,6 +39,10 @@ This library requires Go 1.26+. Use a currently supported Go release with the la
 
 ## Usage
 
+`token` is the Source token from your Ours Privacy dashboard. Events must be allow-listed: an event that isn't on your [Event Allowlist](https://docs.oursprivacy.com/docs/allow-listing-events) isn't forwarded to your destinations.
+
+See the [SDK guide](https://docs.oursprivacy.com/docs/go) and the runnable code in [`examples`](examples).
+
 The full API of this library can be found in [api.md](api.md).
 
 ```go
@@ -54,8 +58,25 @@ import (
 func main() {
 	client := oursprivacy.NewClient()
 	response, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
-		Token: "REPLACE_ME",
-		Event: "REPLACE_ME",
+		Token:      "YOUR_SOURCE_TOKEN",
+		Event:      "signup_completed",
+		DistinctID: oursprivacy.String("evt_01J9ZK3Q7X"),
+		EventProperties: map[string]oursprivacy.TrackEventParamsEventPropertyUnion{
+			"plan": {
+				OfString: oursprivacy.String("pro"),
+			},
+			"value": {
+				OfFloat: oursprivacy.Float(49),
+			},
+			"currency": {
+				OfString: oursprivacy.String("USD"),
+			},
+		},
+		ExternalID: oursprivacy.String("crm_contact_1042"),
+		IdentityContext: oursprivacy.TrackEventParamsIdentityContext{
+			IP:        "203.0.113.10",
+			UserAgent: "Mozilla/5.0",
+		},
 	})
 	if err != nil {
 		panic(err.Error())
@@ -65,7 +86,121 @@ func main() {
 
 ```
 
+### Identify a visitor
+
+Set properties on a visitor, creating the visitor if there's no match.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/with-ours/ingest-sdk-go"
+)
+
+func main() {
+	client := oursprivacy.NewClient()
+	response, err := client.Visitor.Upsert(context.TODO(), oursprivacy.VisitorUpsertParams{
+		Token: "YOUR_SOURCE_TOKEN",
+		UserProperties: oursprivacy.VisitorUpsertParamsUserProperties{
+			FirstName: oursprivacy.String("Sample"),
+			LastName:  oursprivacy.String("User"),
+		},
+		Email: oursprivacy.String("user@example.com"),
+	})
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Printf("%+v\n", response.Success)
+}
+
+```
+
+### Send a batch of events
+
+Send many events in one request, each with its own required `distinctId`.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/with-ours/ingest-sdk-go"
+)
+
+func main() {
+	client := oursprivacy.NewClient()
+	batch, err := client.Batch.New(context.TODO(), oursprivacy.BatchNewParams{
+		Token: "YOUR_SOURCE_TOKEN",
+		Events: []oursprivacy.BatchNewParamsEvent{{
+			Event:      "signup_completed",
+			DistinctID: "evt_01J9ZK3Q7X",
+			ExternalID: oursprivacy.String("crm_contact_1042"),
+		}, {
+			Event:      "plan_upgraded",
+			DistinctID: "evt_01J9ZK3Q8Y",
+			ExternalID: oursprivacy.String("crm_contact_1042"),
+		}},
+	})
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Printf("%+v\n", batch.Accepted)
+}
+
+```
+
+A partial success returns HTTP 207 with a result for each row. Retry only the rows whose `code` is `queue_failed`, with the same `distinctId`. You can backfill events up to one year old; older `time` values are clamped.
+
+### Get an experiment assignment
+
+Look up a visitor's variant, using the experiment's `exp_*` token rather than the Source token.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/with-ours/ingest-sdk-go"
+)
+
+func main() {
+	client := oursprivacy.NewClient()
+	response, err := client.Experiments.Assignment(
+		context.TODO(),
+		"checkout_redesign",
+		oursprivacy.ExperimentAssignmentParams{
+			Token:     "exp_YOUR_EXPERIMENT_TOKEN",
+			VisitorID: "visitor_1042",
+		},
+	)
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Printf("%+v\n", response)
+}
+
+```
+
+### Further reading
+
+The docs cover each endpoint in full.
+
+- [Track](https://docs.oursprivacy.com/docs/reference/track)
+- [Identify](https://docs.oursprivacy.com/docs/reference/identify)
+- [Batch](https://docs.oursprivacy.com/docs/reference/batch)
+- [Rate limits](https://docs.oursprivacy.com/docs/reference/rate-limits)
+- [Server-side experimentation](https://docs.oursprivacy.com/docs/experimentation/server-side)
+
 ### Request fields
+
+Types such as `ExampleParams`, `Point`, `FooParams` and `AnimalUnion` in this section and those after it are illustrative, not part of this SDK.
 
 The oursprivacy library uses the [`omitzero`](https://tip.golang.org/doc/go1.24#encodingjsonpkgencodingjson)
 semantics from the Go 1.24+ `encoding/json` release for request fields.
@@ -278,15 +413,6 @@ The request option `option.WithDebugLog(nil)` may be helpful while debugging.
 
 See the [full list of request options](https://pkg.go.dev/github.com/with-ours/ingest-sdk-go/option).
 
-### Pagination
-
-This library provides some conveniences for working with paginated list endpoints.
-
-You can use `.ListAutoPaging()` methods to iterate through items across all pages:
-
-Or you can use simple `.List()` methods to fetch a single page and receive a standard response object
-with additional helper methods like `.GetNextPage()`, e.g.:
-
 ### Errors
 
 When the API returns a non-success status code, we return an error with type
@@ -304,8 +430,8 @@ _, err := client.Track.Event(context.TODO(), oursprivacy.TrackEventParams{
 if err != nil {
 	var apierr *oursprivacy.Error
 	if errors.As(err, &apierr) {
-		println(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request
-		println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response
+		println(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request, with secrets replaced
+		println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response, with secrets replaced
 	}
 	panic(err.Error()) // GET "/track": 400 Bad Request { ... }
 }
@@ -335,19 +461,6 @@ client.Track.Event(
 	option.WithRequestTimeout(20*time.Second),
 )
 ```
-
-### File uploads
-
-Request parameters that correspond to file uploads in multipart requests are typed as
-`io.Reader`. The contents of the `io.Reader` will by default be sent as a multipart form
-part with the file name of "anonymous_file" and content-type of "application/octet-stream".
-
-The file name and content-type can be customized by implementing `Name() string` or `ContentType()
-string` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a
-file returned by `os.Open` will be sent with the file name on disk.
-
-We also provide a helper `oursprivacy.File(reader io.Reader, filename string, contentType string)`
-which can be used to wrap any `io.Reader` with the appropriate file name and content type.
 
 ### Retries
 

@@ -8,9 +8,11 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"slices"
 
 	"github.com/with-ours/ingest-sdk-go/internal/apijson"
+	"github.com/with-ours/ingest-sdk-go/internal/redact"
 	"github.com/with-ours/ingest-sdk-go/internal/requestconfig"
 	"github.com/with-ours/ingest-sdk-go/option"
 	"github.com/with-ours/ingest-sdk-go/packages/param"
@@ -48,7 +50,11 @@ func (r *ExperimentService) Assignment(ctx context.Context, experimentKey string
 		err = errors.New("missing required experiment_key parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("experiments/assignments/%s", experimentKey)
+	path := fmt.Sprintf("experiments/assignments/%s", url.PathEscape(experimentKey))
+	err = requestconfig.CheckPathSegments(path)
+	if err != nil {
+		return nil, err
+	}
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -309,6 +315,10 @@ func (r *ExperimentAssignmentParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+func (r ExperimentAssignmentParams) Format(f fmt.State, verb rune) {
+	redact.WriteParams(f, r)
+}
+
 // Optional page context for URL + query-param eligibility. Variant bucketing is
 // deterministic on `visitor_id` regardless of context.
 type ExperimentAssignmentParamsContext struct {
@@ -344,4 +354,8 @@ func (r ExperimentPersonalizationParams) MarshalJSON() (data []byte, err error) 
 }
 func (r *ExperimentPersonalizationParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r ExperimentPersonalizationParams) Format(f fmt.State, verb rune) {
+	redact.WriteParams(f, r)
 }
