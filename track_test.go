@@ -213,6 +213,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 				OfString: oursprivacy.String("string"),
 			},
 		},
+		VisitorID: oursprivacy.String("P"),
 	})
 	if err != nil {
 		var apierr *oursprivacy.Error
