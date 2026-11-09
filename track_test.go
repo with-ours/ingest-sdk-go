@@ -14,7 +14,6 @@ import (
 )
 
 func TestTrackEventWithOptionalParams(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -34,6 +33,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 			AdID:             oursprivacy.String("ad_id"),
 			AdmitadUid:       oursprivacy.String("admitad_uid"),
 			AdsetID:          oursprivacy.String("adset_id"),
+			AffiliatlyV3:     oursprivacy.String("affiliatly_v3"),
 			Alart:            oursprivacy.String("alart"),
 			Aleid:            oursprivacy.String("aleid"),
 			Axwrt:            oursprivacy.String("axwrt"),
@@ -133,6 +133,7 @@ func TestTrackEventWithOptionalParams(t *testing.T) {
 			AdID:             oursprivacy.String("ad_id"),
 			AdmitadUid:       oursprivacy.String("admitad_uid"),
 			AdsetID:          oursprivacy.String("adset_id"),
+			AffiliatlyV3:     oursprivacy.String("affiliatly_v3"),
 			Alart:            oursprivacy.String("alart"),
 			Aleid:            oursprivacy.String("aleid"),
 			Axwrt:            oursprivacy.String("axwrt"),
