@@ -182,16 +182,16 @@ type BatchNewParamsEvent struct {
 	// The name of the event you're tracking. This must be whitelisted in the Ours
 	// dashboard. Leading and trailing whitespace is removed before validation.
 	Event string `json:"event" api:"required"`
-	// The email address of a user. When userId is absent and externalId does not
+	// The email address of a user. When visitorId is absent and externalId does not
 	// resolve a visitor, we search your account for a visitor with this email. If no
 	// match is found, we try userProperties.phone_number before creating a new
 	// visitor. Leading and trailing whitespace is removed before validation.
 	Email param.Opt[string] `json:"email,omitzero"`
-	// Your system's unique identifier for this user. When userId is absent, we search
-	// your account for an existing visitor with this externalId. If no match is found,
-	// we try email and then userProperties.phone_number before creating a new visitor.
-	// If you also have the userId from cookies or local storage, send both — it
-	// removes the lookup round-trip. Non-string input is converted to text before
+	// Your system's unique identifier for this user. When visitorId is absent, we
+	// search your account for an existing visitor with this externalId. If no match is
+	// found, we try email and then userProperties.phone_number before creating a new
+	// visitor. If you also have the visitorId from cookies or local storage, send both
+	// — it removes the lookup round-trip. Non-string input is converted to text before
 	// validation; clients should send a string. Leading and trailing whitespace is
 	// removed before validation.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
@@ -201,10 +201,20 @@ type BatchNewParamsEvent struct {
 	Time param.Opt[float64] `json:"time,omitzero"`
 	// The Ours Visitor ID stored in local storage and cookies on your web properties.
 	// When present, this is used directly — no lookup by externalId, email, or phone
-	// is performed. If you have both a userId and an externalId, send both so the
-	// event is attached to the right visitor without any lookup overhead. Leading and
-	// trailing whitespace is removed before validation.
+	// is performed. If you have both a visitorId and an externalId, send both so the
+	// event is attached to the right visitor without any lookup overhead. visitorId
+	// takes precedence over the deprecated userId alias. Leading and trailing
+	// whitespace is removed before validation.
+	//
+	// Deprecated: deprecated
 	UserID param.Opt[string] `json:"userId,omitzero"`
+	// The Ours Visitor ID stored in local storage and cookies on your web properties.
+	// When present, this is used directly — no lookup by externalId, email, or phone
+	// is performed. If you have both a visitorId and an externalId, send both so the
+	// event is attached to the right visitor without any lookup overhead. visitorId
+	// takes precedence over the deprecated userId alias. Leading and trailing
+	// whitespace is removed before validation.
+	VisitorID param.Opt[string] `json:"visitorId,omitzero"`
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
 	DefaultProperties BatchNewParamsEventDefaultProperties `json:"defaultProperties,omitzero"`

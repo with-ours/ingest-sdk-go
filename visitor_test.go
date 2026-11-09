@@ -204,7 +204,8 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 			IP:        "ip",
 			UserAgent: "userAgent",
 		},
-		UserID: oursprivacy.String("P"),
+		UserID:    oursprivacy.String("P"),
+		VisitorID: oursprivacy.String("P"),
 	})
 	if err != nil {
 		var apierr *oursprivacy.Error

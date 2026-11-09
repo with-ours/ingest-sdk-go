@@ -214,6 +214,7 @@ func TestBatchNew(t *testing.T) {
 					OfString: oursprivacy.String("string"),
 				},
 			},
+			VisitorID: oursprivacy.String("P"),
 		}},
 	})
 	if err != nil {
