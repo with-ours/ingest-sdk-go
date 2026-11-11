@@ -109,6 +109,8 @@ type TrackEventParams struct {
 	// event is attached to the right visitor without any lookup overhead. visitorId
 	// takes precedence over the deprecated userId alias. Leading and trailing
 	// whitespace is removed before validation.
+	//
+	// Deprecated: deprecated
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// The Ours Visitor ID stored in local storage and cookies on your web properties.
 	// When present, this is used directly — no lookup by externalId, email, or phone
