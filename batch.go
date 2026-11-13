@@ -225,9 +225,9 @@ type BatchNewParamsEvent struct {
 	// strings. After normalization, the serialized JSON must be shorter than 1,048,576
 	// UTF-16 code units.
 	EventProperties map[string]BatchNewParamsEventEventPropertyUnion `json:"eventProperties,omitzero"`
-	// End-user network context for server-side calls. Required for probabilistic
-	// identity resolution when the caller is a backend server rather than an end-user
-	// browser.
+	// Deprecated and ignored. Accepted so existing clients keep working.
+	//
+	// Deprecated: deprecated
 	IdentityContext BatchNewParamsEventIdentityContext `json:"identityContext,omitzero"`
 	// Properties to set on the visitor. (optional) You can also update these
 	// properties via the identify endpoint.
@@ -927,9 +927,9 @@ func (u *BatchNewParamsEventEventPropertyMapItemMapItemMapItemMapItemArrayItemUn
 	return nil
 }
 
-// End-user network context for server-side calls. Required for probabilistic
-// identity resolution when the caller is a backend server rather than an end-user
-// browser.
+// Deprecated and ignored. Accepted so existing clients keep working.
+//
+// Deprecated: deprecated
 //
 // The properties IP, UserAgent are required.
 type BatchNewParamsEventIdentityContext struct {
