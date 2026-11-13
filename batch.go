@@ -255,6 +255,9 @@ type BatchNewParamsEventDefaultProperties struct {
 	// The ad id detected in the session. This is set by the web sdk automatically.
 	// Leading and trailing whitespace is removed before validation.
 	AdID param.Opt[string] `json:"ad_id,omitzero"`
+	// The AdRoll Click ID (adct) from the landing URL. Ex: adct123 Leading and
+	// trailing whitespace is removed before validation.
+	Adct param.Opt[string] `json:"adct,omitzero"`
 	// The Admitad (Mitgo) affiliate Click ID. Ex: admitad_uid_abc123 Leading and
 	// trailing whitespace is removed before validation.
 	AdmitadUid param.Opt[string] `json:"admitad_uid,omitzero"`
@@ -951,6 +954,8 @@ type BatchNewParamsEventUserProperties struct {
 	// Leading and trailing whitespace is removed before validation.
 	EfTransactionID param.Opt[string] `json:"_ef_transaction_id,omitzero"`
 	AdID            param.Opt[string] `json:"ad_id,omitzero"`
+	// Leading and trailing whitespace is removed before validation.
+	Adct param.Opt[string] `json:"adct,omitzero"`
 	// Leading and trailing whitespace is removed before validation.
 	AdmitadUid   param.Opt[string] `json:"admitad_uid,omitzero"`
 	AdsetID      param.Opt[string] `json:"adset_id,omitzero"`
