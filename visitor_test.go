@@ -29,6 +29,7 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 		UserProperties: oursprivacy.VisitorUpsertParamsUserProperties{
 			EfTransactionID:  oursprivacy.String("_ef_transaction_id"),
 			AdID:             oursprivacy.String("ad_id"),
+			Adct:             oursprivacy.String("adct"),
 			AdmitadUid:       oursprivacy.String("admitad_uid"),
 			AdsetID:          oursprivacy.String("adset_id"),
 			AffiliatlyV3:     oursprivacy.String("affiliatly_v3"),
@@ -115,6 +116,7 @@ func TestVisitorUpsertWithOptionalParams(t *testing.T) {
 			EfTransactionID:  oursprivacy.String("_ef_transaction_id"),
 			ActiveDuration:   oursprivacy.Float(0),
 			AdID:             oursprivacy.String("ad_id"),
+			Adct:             oursprivacy.String("adct"),
 			AdmitadUid:       oursprivacy.String("admitad_uid"),
 			AdsetID:          oursprivacy.String("adset_id"),
 			AffiliatlyV3:     oursprivacy.String("affiliatly_v3"),
