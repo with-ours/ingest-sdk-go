@@ -113,9 +113,9 @@ type VisitorUpsertParams struct {
 	// These properties are used throughout the Ours app to pass known values onto
 	// destinations
 	DefaultProperties VisitorUpsertParamsDefaultProperties `json:"defaultProperties,omitzero"`
-	// End-user network context for server-side calls. Required for probabilistic
-	// identity resolution when the caller is a backend server rather than an end-user
-	// browser.
+	// Deprecated and ignored. Accepted so existing clients keep working.
+	//
+	// Deprecated: deprecated
 	IdentityContext VisitorUpsertParamsIdentityContext `json:"identityContext,omitzero"`
 	paramObj
 }
@@ -1450,9 +1450,9 @@ func (u *VisitorUpsertParamsDefaultPropertiesIsBotUnion) asAny() any {
 	return nil
 }
 
-// End-user network context for server-side calls. Required for probabilistic
-// identity resolution when the caller is a backend server rather than an end-user
-// browser.
+// Deprecated and ignored. Accepted so existing clients keep working.
+//
+// Deprecated: deprecated
 //
 // The properties IP, UserAgent are required.
 type VisitorUpsertParamsIdentityContext struct {

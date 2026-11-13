@@ -492,22 +492,22 @@ you need to examine response headers, status codes, or other details.
 
 ```go
 // Create a variable to store the HTTP response
-var response *http.Response
+var httpResponse *http.Response
 response, err := client.Track.Event(
 	context.TODO(),
 	oursprivacy.TrackEventParams{
 		Token: "REPLACE_ME",
 		Event: "REPLACE_ME",
 	},
-	option.WithResponseInto(&response),
+	option.WithResponseInto(&httpResponse),
 )
 if err != nil {
 	// handle error
 }
 fmt.Printf("%+v\n", response)
 
-fmt.Printf("Status Code: %d\n", response.StatusCode)
-fmt.Printf("Headers: %+#v\n", response.Header)
+fmt.Printf("Status Code: %d\n", httpResponse.StatusCode)
+fmt.Printf("Headers: %+#v\n", httpResponse.Header)
 ```
 
 ### Making custom/undocumented requests
