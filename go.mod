@@ -3,7 +3,7 @@ module github.com/with-ours/ingest-sdk-go
 go 1.26.0
 
 require (
-	github.com/tidwall/gjson v1.20.2
+	github.com/tidwall/gjson v1.20.4
 	github.com/tidwall/sjson v1.2.9
 )
 
